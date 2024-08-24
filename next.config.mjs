@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  eslint: {
+    dirs: ['.'],
+  },
+};
 
 export default nextConfig;
