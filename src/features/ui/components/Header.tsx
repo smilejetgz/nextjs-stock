@@ -45,7 +45,7 @@ import { useTheme } from 'next-themes';
 const Header = () => {
   const { setTheme } = useTheme();
   return (
-    <header className="bg-background sticky top-0 z-30 flex h-14 items-center gap-4 border-b px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline" className="sm:hidden">
@@ -61,35 +61,35 @@ const Header = () => {
             <nav className="grid gap-6 text-lg font-medium">
               <Link
                 href="#"
-                className="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
                 <Home className="h-5 w-5" />
                 Dashboard
               </Link>
               <Link
                 href="#"
-                className="text-foreground flex items-center gap-4 px-2.5"
+                className="flex items-center gap-4 px-2.5 text-foreground"
               >
                 <ShoppingCart className="h-5 w-5" />
                 Orders
               </Link>
               <Link
                 href="#"
-                className="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
                 <Package className="h-5 w-5" />
                 Products
               </Link>
               <Link
                 href="#"
-                className="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
                 <Users2 className="h-5 w-5" />
                 Customers
               </Link>
               <Link
                 href="#"
-                className="text-muted-foreground hover:text-foreground flex items-center gap-4 px-2.5"
+                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
                 <LineChart className="h-5 w-5" />
                 Settings
@@ -118,11 +118,11 @@ const Header = () => {
         </BreadcrumbList>
       </Breadcrumb>
       <div className="relative ml-auto flex-1 md:grow-0">
-        <Search className="text-muted-foreground absolute left-2.5 top-2.5 h-4 w-4" />
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
           placeholder="Search..."
-          className="bg-background w-full rounded-lg pl-8 md:w-[200px] lg:w-[320px]"
+          className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
         />
       </div>
       <DropdownMenu>
