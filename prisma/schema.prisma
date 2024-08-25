@@ -20,7 +20,7 @@ enum StockStatus {
 
 enum Role {
   MANAGER
-  AMIN
+  ADMIN
 }
 
 model User {
@@ -43,14 +43,20 @@ model Category {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
+  Stock     Stock[]
 }
 
 model Stock {
-  id        Int         @id @default(autoincrement())
-  name      String      @unique
-  status    StockStatus @default(APPROVED)
-  userId    Int
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @default(now())
-  user      User        @relation(fields: [userId], references: [id])
+  id         Int         @id @default(autoincrement())
+  name       String      @unique
+  amount     Int
+  detail     String
+  image      String?
+  status     StockStatus @default(APPROVED)
+  CategoryId Int
+  userId     Int
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @default(now())
+  category   Category    @relation(fields: [CategoryId], references: [id])
+  user       User        @relation(fields: [userId], references: [id])
 }
