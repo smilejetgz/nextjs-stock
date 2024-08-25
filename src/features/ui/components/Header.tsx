@@ -18,12 +18,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/features/shadcn/components/ui/sheet';
-import { Home, Package, PanelLeft, Search, Tag, Users2 } from 'lucide-react';
+import { PanelLeft, Search } from 'lucide-react';
 import Image from 'next/image';
 import { Separator } from '@/features/shadcn/components/ui/separator';
 import { ModeToggle } from '@/features/ui/components/ModeToggle';
-import SidebarLink from '@/features/ui/components/SidebarLink';
 import BreadcrumbNavigation from '@/features/ui/components/Breadcrumb';
+import NavLinks from '@/features/ui/components/NavLinks';
 
 const Header = () => {
   return (
@@ -41,30 +41,7 @@ const Header = () => {
             <Separator />
             <SheetDescription></SheetDescription>
             <nav className="grid gap-6 text-lg font-medium">
-              <SidebarLink
-                href="/admin/dashboard"
-                title="Dashboard"
-                Icon={Home}
-                dialog={true}
-              />
-              <SidebarLink
-                href="/admin/categories"
-                title="Categories"
-                Icon={Tag}
-                dialog={true}
-              />
-              <SidebarLink
-                href="/admin/stocks"
-                title="Stocks"
-                Icon={Package}
-                dialog={true}
-              />
-              <SidebarLink
-                href="/admin/user"
-                title="User"
-                Icon={Users2}
-                dialog={true}
-              />
+              <NavLinks dialog={true} />
             </nav>
           </SheetHeader>
         </SheetContent>

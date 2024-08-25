@@ -6,8 +6,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/features/shadcn/components/ui/tooltip';
-import SidebarLink from '@/features/ui/components/SidebarLink';
-import { Home, Package, Package2, Settings, Tag, Users2 } from 'lucide-react';
+import NavLinks from '@/features/ui/components/NavLinks';
+import { Package2, Settings } from 'lucide-react';
 import Link from 'next/link';
 
 const Sidebar = () => {
@@ -22,30 +22,7 @@ const Sidebar = () => {
           <span className="sr-only">Home</span>
         </Link>
         <TooltipProvider>
-          <SidebarLink
-            href="/admin/dashboard"
-            title="Dashboard"
-            Icon={Home}
-            dialog={false}
-          />
-          <SidebarLink
-            href="/admin/categories"
-            title="Categories"
-            Icon={Tag}
-            dialog={false}
-          />
-          <SidebarLink
-            href="/admin/stocks"
-            title="Stocks"
-            Icon={Package}
-            dialog={false}
-          />
-          <SidebarLink
-            href="/admin/user"
-            title="User"
-            Icon={Users2}
-            dialog={false}
-          />
+          <NavLinks dialog={false} />
         </TooltipProvider>
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
