@@ -1,4 +1,4 @@
 const StockPage = () => {
-  return <div>stock page</div>;
+  return <div>Stock Page</div>;
 };
 export default StockPage;

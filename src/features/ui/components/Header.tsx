@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,19 +26,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/features/shadcn/components/ui/sheet';
-import {
-  Home,
-  LineChart,
-  Package,
-  PanelLeft,
-  Search,
-  ShoppingCart,
-  Users2,
-} from 'lucide-react';
+import { Home, Package, PanelLeft, Search, Tag, Users2 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Separator } from '@/features/shadcn/components/ui/separator';
 import { ModeToggle } from '@/features/ui/components/ModeToggle';
+import SidebarLink from '@/features/ui/components/SidebarLink';
 
 const Header = () => {
   return (
@@ -54,41 +49,30 @@ const Header = () => {
             <Separator />
             <SheetDescription></SheetDescription>
             <nav className="grid gap-6 text-lg font-medium">
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Home className="h-5 w-5" />
-                Dashboard
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-foreground"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                Orders
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Package className="h-5 w-5" />
-                Products
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <Users2 className="h-5 w-5" />
-                Customers
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-              >
-                <LineChart className="h-5 w-5" />
-                Settings
-              </Link>
+              <SidebarLink
+                href="/admin/dashboard"
+                title="Dashboard"
+                Icon={Home}
+                dialog={true}
+              />
+              <SidebarLink
+                href="/admin/categories"
+                title="Categories"
+                Icon={Tag}
+                dialog={true}
+              />
+              <SidebarLink
+                href="/admin/stocks"
+                title="Stocks"
+                Icon={Package}
+                dialog={true}
+              />
+              <SidebarLink
+                href="/admin/user"
+                title="User"
+                Icon={Users2}
+                dialog={true}
+              />
             </nav>
           </SheetHeader>
         </SheetContent>

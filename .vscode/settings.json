@@ -31,5 +31,6 @@
   },
   "files.eol": "\n",
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": ["lucide"]
 }
