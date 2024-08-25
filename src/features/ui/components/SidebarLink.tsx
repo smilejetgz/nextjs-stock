@@ -4,7 +4,6 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-  TooltipProvider,
 } from '@/features/shadcn/components/ui/tooltip';
 import { cn } from '@/features/shadcn/utils';
 import Link from 'next/link';
@@ -17,22 +16,6 @@ interface SidebarLinkProps {
   Icon: ComponentType<{ className?: string }>;
   dialog: boolean;
 }
-
-interface TooltipLinkProps extends Omit<SidebarLinkProps, 'dialog'> {
-  linkClasses: string;
-}
-
-const TooltipLink = ({ href, title, Icon, linkClasses }: TooltipLinkProps) => (
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <Link href={href} className={linkClasses}>
-        <Icon className="h-5 w-5" />
-        <span className="sr-only">{title}</span>
-      </Link>
-    </TooltipTrigger>
-    <TooltipContent side="right">{title}</TooltipContent>
-  </Tooltip>
-);
 
 const SidebarLink = ({ href, title, Icon, dialog }: SidebarLinkProps) => {
   const pathname = usePathname();
@@ -47,20 +30,23 @@ const SidebarLink = ({ href, title, Icon, dialog }: SidebarLinkProps) => {
       ? cn(baseClasses, 'bg-accent text-accent-foreground')
       : cn(baseClasses, 'text-muted-foreground');
 
+  console.log(href);
+
   return dialog ? (
     <Link href={href} className={linkClasses}>
       <Icon className="h-5 w-5" />
       {title}
     </Link>
   ) : (
-    <TooltipProvider>
-      <TooltipLink
-        href={href}
-        title={title}
-        Icon={Icon}
-        linkClasses={linkClasses}
-      />
-    </TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Link href={href} className={linkClasses}>
+          <Icon className="h-5 w-5" />
+          <span className="sr-only">{title}</span>
+        </Link>
+      </TooltipTrigger>
+      <TooltipContent side="right">{title}</TooltipContent>
+    </Tooltip>
   );
 };
 
