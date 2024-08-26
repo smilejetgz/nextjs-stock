@@ -30,8 +30,6 @@ const SidebarLink = ({ href, title, Icon, dialog }: SidebarLinkProps) => {
       ? cn(baseClasses, 'bg-accent text-accent-foreground')
       : cn(baseClasses, 'text-muted-foreground');
 
-  console.log(href);
-
   return dialog ? (
     <Link href={href} className={linkClasses}>
       <Icon className="h-5 w-5" />

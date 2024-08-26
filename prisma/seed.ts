@@ -40,6 +40,50 @@ async function main() {
     userIds.push(user.id);
     if (user.role !== 'MANAGER') adminIds.push(user.id);
   }
+
+  // Create Categories
+  const numsOfCategories = 100;
+  const categoryIds: number[] = [admin.id];
+  for (let i = 0; i < numsOfCategories; i++) {
+    const name = faker.lorem.sentence();
+    const userId = faker.helpers.arrayElement(userIds);
+    const createCategoryInput: Prisma.CategoryCreateInput = {
+      name,
+      user: { connect: { id: userId } },
+    };
+
+    const category = await prisma.category.upsert({
+      where: {
+        name: createCategoryInput.name,
+      },
+      update: {},
+      create: createCategoryInput,
+    });
+
+    categoryIds.push(category.id);
+  }
+
+  const numsOfStocks = 100;
+  for (let i = 0; i < numsOfStocks; i++) {
+    const name = faker.lorem.sentence();
+    const userId = faker.helpers.arrayElement(userIds);
+    const categoryId = faker.helpers.arrayElement(categoryIds);
+    const createStockInput: Prisma.StockCreateInput = {
+      name,
+      amount: faker.number.int({ min: 1, max: 60 }),
+      image: faker.image.url(),
+      category: { connect: { id: categoryId } },
+      user: { connect: { id: userId } },
+    };
+
+    await prisma.stock.upsert({
+      where: {
+        name: createStockInput.name,
+      },
+      update: {},
+      create: createStockInput,
+    });
+  }
 }
 
 main()
