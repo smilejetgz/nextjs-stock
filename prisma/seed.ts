@@ -42,10 +42,10 @@ async function main() {
   }
 
   // Create Categories
-  const numsOfCategories = 100;
+  const numsOfCategories = 10;
   const categoryIds: number[] = [admin.id];
   for (let i = 0; i < numsOfCategories; i++) {
-    const name = faker.lorem.sentence();
+    const name = faker.word.noun();
     const userId = faker.helpers.arrayElement(userIds);
     const createCategoryInput: Prisma.CategoryCreateInput = {
       name,
@@ -65,13 +65,15 @@ async function main() {
 
   const numsOfStocks = 100;
   for (let i = 0; i < numsOfStocks; i++) {
-    const name = faker.lorem.sentence();
+    const name = faker.word.noun();
     const userId = faker.helpers.arrayElement(userIds);
     const categoryId = faker.helpers.arrayElement(categoryIds);
     const createStockInput: Prisma.StockCreateInput = {
       name,
       amount: faker.number.int({ min: 1, max: 60 }),
       image: faker.image.url(),
+      detail: faker.lorem.paragraphs({ min: 3, max: 10 }),
+      status: faker.helpers.arrayElement(['APPROVED', 'REJECTED']),
       category: { connect: { id: categoryId } },
       user: { connect: { id: userId } },
     };
