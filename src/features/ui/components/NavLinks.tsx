@@ -1,7 +1,7 @@
 'use client';
 
 import { Home, Package, Tag, Users2 } from 'lucide-react';
-import SidebarLink from '@/features/ui/components/SidebarLink';
+import SidebarLink from '@/features/ui/components/Sidebar/SidebarLink';
 
 interface NavLinksProps {
   dialog: boolean;
@@ -10,29 +10,19 @@ interface NavLinksProps {
 const NavLinks = ({ dialog }: NavLinksProps) => (
   <>
     <SidebarLink
-      href="/admin/dashboard"
+      href="/dashboard"
       title="Dashboard"
       Icon={Home}
       dialog={dialog}
     />
     <SidebarLink
-      href="/admin/categories"
+      href="/categories"
       title="Categories"
       Icon={Tag}
       dialog={dialog}
     />
-    <SidebarLink
-      href="/admin/stocks"
-      title="Stocks"
-      Icon={Package}
-      dialog={dialog}
-    />
-    <SidebarLink
-      href="/admin/user"
-      title="User"
-      Icon={Users2}
-      dialog={dialog}
-    />
+    <SidebarLink href="/stocks" title="Stocks" Icon={Package} dialog={dialog} />
+    <SidebarLink href="/users" title="User" Icon={Users2} dialog={dialog} />
   </>
 );
 

@@ -21,8 +21,8 @@ import {
 import { PanelLeft, Search } from 'lucide-react';
 import Image from 'next/image';
 import { Separator } from '@/features/shadcn/components/ui/separator';
-import { ModeToggle } from '@/features/ui/components/ModeToggle';
-import BreadcrumbNavigation from '@/features/ui/components/Breadcrumb';
+import { ModeToggle } from '@/features/ui/components/Header/ModeToggle';
+import BreadcrumbNavigation from '@/features/ui/components/Header/Breadcrumb';
 import NavLinks from '@/features/ui/components/NavLinks';
 
 const Header = () => {
