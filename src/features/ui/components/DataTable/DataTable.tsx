@@ -28,7 +28,7 @@ import { DataTableViewOptions } from '@/features/ui/components/DataTable/DataTab
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  filtering: string;
+  filtering?: string;
 }
 
 export function DataTable<TData, TValue>({

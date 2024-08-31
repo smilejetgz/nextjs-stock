@@ -15,17 +15,14 @@ import React from 'react';
 
 const BreadcrumbNavigation = () => {
   const pathname = usePathname();
-  const pathSegments = pathname
-    .split('/')
-    .filter((segment) => segment)
-    .slice(1);
+  const pathSegments = pathname.split('/').filter((segment) => segment);
 
   return (
     <Breadcrumb className="hidden md:flex">
       <BreadcrumbList>
         {pathSegments.map((segment, index) => {
           const isLast = index === pathSegments.length - 1;
-          const href = '../' + pathSegments.slice(0, index + 1).join('/');
+          const href = '/' + pathSegments.slice(0, index + 1).join('/');
 
           return (
             <React.Fragment key={index}>
@@ -38,7 +35,7 @@ const BreadcrumbNavigation = () => {
                   </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
-              {!isLast && <BreadcrumbSeparator />}{' '}
+              {!isLast && <BreadcrumbSeparator />}
             </React.Fragment>
           );
         })}

@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/features/shadcn/components/ui/select';
+import { Input } from '@/features/shadcn/components/ui/input';
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
@@ -24,10 +25,6 @@ export function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
   return (
     <div className="flex items-center justify-between px-2">
-      <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{' '}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
-      </div>
       <div className="flex items-center space-x-6 lg:space-x-8">
         <div className="flex items-center space-x-2">
           <p className="text-sm font-medium">Rows per page</p>
@@ -72,6 +69,15 @@ export function DataTablePagination<TData>({
             <span className="sr-only">Go to previous page</span>
             <ChevronLeftIcon className="h-4 w-4" />
           </Button>
+          <Input
+            type="number"
+            defaultValue={table.getState().pagination.pageIndex + 1}
+            onChange={(e) => {
+              const page = e.target.value ? Number(e.target.value) - 1 : 0;
+              table.setPageIndex(page);
+            }}
+            className="h-8 w-24 rounded border p-4"
+          />
           <Button
             variant="outline"
             className="h-8 w-8 p-0"
