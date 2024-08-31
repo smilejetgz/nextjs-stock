@@ -1,14 +1,6 @@
 'use client';
 
 import { Button } from '@/features/shadcn/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/features/shadcn/components/ui/dropdown-menu';
 import { Input } from '@/features/shadcn/components/ui/input';
 import {
   Sheet,
@@ -19,11 +11,11 @@ import {
   SheetTrigger,
 } from '@/features/shadcn/components/ui/sheet';
 import { PanelLeft, Search } from 'lucide-react';
-import Image from 'next/image';
 import { Separator } from '@/features/shadcn/components/ui/separator';
 import { ModeToggle } from '@/features/ui/components/Header/ModeToggle';
 import BreadcrumbNavigation from '@/features/ui/components/Header/Breadcrumb';
 import NavLinks from '@/features/ui/components/NavLinks';
+import AuthMenu from '@/features/auth/components/AuthMenu';
 
 const Header = () => {
   return (
@@ -35,7 +27,10 @@ const Header = () => {
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="sm:max-w-xs">
+        <SheetContent
+          side="left"
+          className="z-highest fixed left-0 top-0 sm:max-w-xs"
+        >
           <SheetHeader>
             <SheetTitle>Menus</SheetTitle>
             <Separator />
@@ -56,31 +51,7 @@ const Header = () => {
         />
       </div>
       <ModeToggle />
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="overflow-hidden rounded-full"
-          >
-            <Image
-              src="/users/user.png"
-              width={36}
-              height={36}
-              alt="Avatar"
-              className="overflow-hidden rounded-full"
-            />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <AuthMenu />
     </header>
   );
 };

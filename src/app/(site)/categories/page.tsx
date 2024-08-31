@@ -1,7 +1,8 @@
 'use client';
 
 import CategoryList from '@/features/categories/components/CategoryList';
-import { useGetCategories } from '@/features/categories/hook/api';
+import { useGetCategories } from '@/features/categories/hooks/api';
+import { Button } from '@/features/shadcn/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,18 +11,44 @@ import {
   CardHeader,
   CardTitle,
 } from '@/features/shadcn/components/ui/card';
+import { Loading, NotFound } from '@/features/ui/components/Status';
+import { PlusCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const CategoryPage = () => {
-  const categories = useGetCategories();
+  const { data, status } = useGetCategories();
 
   return (
-    <Card className="sm:col-span-full" x-chunk="dashboard-06-chunk-0">
+    <Card x-chunk="dashboard-06-chunk-0">
       <CardHeader>
-        <CardTitle>Categories</CardTitle>
-        <CardDescription>Manage your categories.</CardDescription>
+        <div className="flex items-center">
+          <div className="flex-col">
+            <CardTitle>Categories</CardTitle>
+            <CardDescription>Manage your categories.</CardDescription>
+          </div>
+          <div className="ml-auto flex justify-items-end gap-2">
+            <Button size="sm">
+              <Link
+                href="categories/add"
+                className="flex h-7 items-center gap-1"
+              >
+                <PlusCircle className="h-3.5 w-3.5" />
+                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                  Add Category
+                </span>
+              </Link>
+            </Button>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
-        <CategoryList categories={categories} />
+        {status === 'pending' ? (
+          <Loading label="loading..." />
+        ) : !data ? (
+          <NotFound label="No categories found" />
+        ) : (
+          <CategoryList categories={data} />
+        )}
       </CardContent>
       <CardFooter>
         <div className="text-xs text-muted-foreground">

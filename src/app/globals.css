@@ -59,6 +59,10 @@
   }
 }
 
+.loading-animation {
+  animation: loading-blink 1s infinite;
+}
+
 @layer base {
   * {
     @apply border-border;

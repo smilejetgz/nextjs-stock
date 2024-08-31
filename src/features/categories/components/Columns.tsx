@@ -22,16 +22,26 @@ export type CategoryListProps = {
 
 export const columns: ColumnDef<CategoryItem>[] = [
   {
+    accessorKey: 'id',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Id" />
+    ),
+  },
+  {
     accessorKey: 'name',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Name" />
+      <DataTableColumnHeader
+        column={column}
+        title="Name"
+        className="w-[50px]"
+      />
     ),
   },
   {
     accessorKey: 'createdAt',
     header: ({ column }) => (
       <DataTableColumnHeader
-        className="justify-center"
+        className="hidden justify-center sm:table-cell"
         column={column}
         title="Created On"
       />
@@ -40,14 +50,18 @@ export const columns: ColumnDef<CategoryItem>[] = [
       const createdAt = new Date(row.getValue('createdAt'));
       const formatted = toDateString(createdAt);
 
-      return <div className="text-center font-medium">{formatted}</div>;
+      return (
+        <div className="hidden justify-center font-medium sm:table-cell">
+          {formatted}
+        </div>
+      );
     },
   },
   {
     accessorKey: 'updatedAt',
     header: ({ column }) => (
       <DataTableColumnHeader
-        className="justify-center"
+        className="hidden justify-center sm:table-cell"
         column={column}
         title="Last Modified"
       />
@@ -56,7 +70,11 @@ export const columns: ColumnDef<CategoryItem>[] = [
       const updatedAt = new Date(row.getValue('updatedAt'));
       const formatted = toDateString(updatedAt);
 
-      return <div className="text-center font-medium">{formatted}</div>;
+      return (
+        <div className="hidden justify-center font-medium sm:table-cell">
+          {formatted}
+        </div>
+      );
     },
   },
   {

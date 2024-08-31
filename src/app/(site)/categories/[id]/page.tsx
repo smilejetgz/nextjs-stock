@@ -1,5 +1,7 @@
+import CategoryDetail from '@/features/categories/components/CategoryDetail';
+
 const CategoryDetailsPage = () => {
-  return <div>Category Details Page</div>;
+  return <CategoryDetail />;
 };
 
 export default CategoryDetailsPage;

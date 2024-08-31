@@ -9,3 +9,15 @@ export const findAll = async () => {
 
   return categories;
 };
+
+export const findById = async (id: number) => {
+  const category = await db.category.findUnique({
+    where: { id },
+    include: {
+      user: true,
+    },
+  });
+
+  if (!category) throw new Error('category not fount');
+  return category;
+};

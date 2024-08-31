@@ -56,8 +56,8 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <>
-      <div className="flex items-center justify-end space-x-2 py-4">
+    <div className="">
+      <div className="flex items-center justify-start py-4 sm:justify-end sm:space-x-2">
         {filtering && (
           <Input
             placeholder={`Filter ${filtering}...`}
@@ -67,13 +67,13 @@ export function DataTable<TData, TValue>({
             onChange={(event) =>
               table.getColumn(filtering)?.setFilterValue(event.target.value)
             }
-            className="max-w-sm"
+            className="w-44 max-w-xs sm:max-w-sm"
           />
         )}
         <DataTableViewOptions table={table} />
       </div>
       <div className="rounded-md border">
-        <Table>
+        <Table className="table-auto">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -125,6 +125,6 @@ export function DataTable<TData, TValue>({
       <div className="flex items-center justify-end space-x-2 py-4">
         <DataTablePagination table={table} />
       </div>
-    </>
+    </div>
   );
 }

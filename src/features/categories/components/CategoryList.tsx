@@ -7,11 +7,7 @@ import {
 } from '@/features/categories/components/Columns';
 
 const CategoryList = ({ categories }: CategoryListProps) => {
-  return (
-    <div>
-      <DataTable columns={columns} data={categories} />
-    </div>
-  );
+  return <DataTable columns={columns} data={categories} filtering="name" />;
 };
 
 export default CategoryList;
