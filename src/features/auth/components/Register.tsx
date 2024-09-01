@@ -10,13 +10,22 @@ const Register = () => {
   const router = useRouter();
   const { mutateAsync } = useRegister();
   const { toast } = useToast();
+
   const submit = async (credentials: Signup) => {
-    await mutateAsync(credentials);
-    toast({ description: 'You have already been registered' });
-    router.replace('/auth/sign-in');
+    try {
+      await mutateAsync(credentials);
+      toast({ description: 'Registration successful. You can now sign in.' });
+      router.replace('/auth/sign-in');
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : 'Registration failed. Please try again.';
+      toast({ description: errorMessage });
+    }
   };
 
-  return <AuthForm kind="register" onSubmit={submit}></AuthForm>;
+  return <AuthForm kind="register" onSubmit={submit} />;
 };
 
 export default Register;

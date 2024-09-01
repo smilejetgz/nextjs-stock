@@ -10,7 +10,7 @@ async function main() {
     update: {},
     create: {
       email: 'admin@admin.com',
-      password: await bcrypt.hash('password', 12),
+      password: await bcrypt.hash('Aa123456789.', 12),
       name: 'Admin',
       role: 'ADMIN',
       image: faker.image.avatar(),

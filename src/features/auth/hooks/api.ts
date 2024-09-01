@@ -1,4 +1,8 @@
-import { type Profile, type Signup } from '@/features/auth/types';
+import {
+  type Profile,
+  type Signup,
+  type ApiError,
+} from '@/features/auth/types';
 import { useMutation } from '@tanstack/react-query';
 
 export const useRegister = () => {
@@ -6,11 +10,18 @@ export const useRegister = () => {
     async mutationFn(input: Signup) {
       const res = await fetch('/api/auth/sign-up', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(input),
       });
-      const profile = await (res.json() as Promise<Profile>);
 
-      return profile;
+      if (!res.ok) {
+        const errorData = await (res.json() as Promise<ApiError>);
+        throw new Error(errorData.error || 'An error occurred');
+      }
+
+      return await (res.json() as Promise<Profile>);
     },
   });
 };

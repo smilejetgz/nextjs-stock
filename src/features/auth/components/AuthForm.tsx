@@ -7,7 +7,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/features/shadcn/components/ui/card';
@@ -21,6 +20,7 @@ import {
 import { Input } from '@/features/shadcn/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { capitalize } from 'lodash';
+import Link from 'next/link';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 
 type AuthFormProps =
@@ -50,95 +50,110 @@ const AuthForm = ({ kind, onSubmit }: AuthFormProps) => {
   });
 
   return (
-    <Card className="w-full max-w-sm">
-      <CardHeader>
-        <CardTitle className="text-2xl">{capitalize(kind)}</CardTitle>
-        {kind === 'register' ? (
+    <div className="flex flex-col items-center">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle className="text-2xl">{capitalize(kind)}</CardTitle>
           <CardDescription>
-            Enter your email below to create your new account.
+            {kind === 'register'
+              ? 'Create a new account by filling out the form below.'
+              : 'Sign in to your account using your email and password.'}
           </CardDescription>
-        ) : (
-          <CardDescription>
-            Enter your email below to sign in to your account.
-          </CardDescription>
-        )}
-      </CardHeader>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="relative space-y-8"
-        >
-          <CardContent className="grid gap-4">
-            {kind === 'register' && (
+        </CardHeader>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="relative space-y-6"
+          >
+            <CardContent className="grid gap-4">
+              {kind === 'register' && (
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Your Name" {...field} />
+                      </FormControl>
+                      {form.formState.errors.name && (
+                        <p className="mt-1 text-sm text-red-500">
+                          {form.formState.errors.name.message}
+                        </p>
+                      )}
+                    </FormItem>
+                  )}
+                />
+              )}
               <FormField
                 control={form.control}
-                name="name"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Email Address</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your Name" {...field} />
+                      <Input placeholder="your.email@example.com" {...field} />
                     </FormControl>
-                    {form.formState.errors.name && (
+                    {form.formState.errors.email && (
                       <p className="mt-1 text-sm text-red-500">
-                        {form.formState.errors.name.message}
+                        {form.formState.errors.email.message}
                       </p>
                     )}
                   </FormItem>
                 )}
               />
-            )}
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email Address</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="email"
-                      placeholder="your.email@example.com"
-                      {...field}
-                    />
-                  </FormControl>
-                  {form.formState.errors.email && (
-                    <p className="mt-1 text-sm text-red-500">
-                      {form.formState.errors.email.message}
-                    </p>
-                  )}
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Enter a strong password"
-                      {...field}
-                    />
-                  </FormControl>
-                  {form.formState.errors.password && (
-                    <p className="mt-1 text-sm text-red-500">
-                      {form.formState.errors.password.message}
-                    </p>
-                  )}
-                </FormItem>
-              )}
-            />
-          </CardContent>
-          <CardFooter>
-            <Button type="submit" className="w-full">
-              {capitalize(kind)}
-            </Button>
-          </CardFooter>
-        </form>
-      </Form>
-    </Card>
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter a strong password"
+                        {...field}
+                      />
+                    </FormControl>
+                    {form.formState.errors.password && (
+                      <p className="mt-1 text-sm text-red-500">
+                        {form.formState.errors.password.message}
+                      </p>
+                    )}
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="mt-4 w-full">
+                {capitalize(kind)}
+              </Button>
+            </CardContent>
+          </form>
+        </Form>
+      </Card>
+      <div className="mt-6 text-center text-sm">
+        {kind === 'login' ? (
+          <>
+            <span className="text-gray-500">Do not have an account?</span>{' '}
+            <Link
+              href="sign-up"
+              className="text-blue-500 underline hover:text-blue-700"
+            >
+              Register here
+            </Link>
+          </>
+        ) : (
+          <>
+            <span className="text-gray-500">Already have an account?</span>{' '}
+            <Link
+              href="sign-in"
+              className="text-blue-500 underline hover:text-blue-700"
+            >
+              Log in
+            </Link>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

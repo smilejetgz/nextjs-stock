@@ -19,6 +19,25 @@ export const findById = async (id: number) => {
   return user;
 };
 
+export const checkUserNameExists = async ({
+  name,
+}: Pick<Signup, 'name'>): Promise<boolean> => {
+  const userWithName = await db.user.findUnique({
+    where: { name },
+  });
+  return !!userWithName;
+};
+
+export const checkUserEmailExists = async ({
+  email,
+}: Pick<Signup, 'email'>): Promise<boolean> => {
+  const userWithEmail = await db.user.findUnique({
+    where: { email },
+  });
+
+  return !!userWithEmail;
+};
+
 export const add = async (input: Signup) => {
   const password = await hashPassword(input.password);
   const user = await db.user.create({
