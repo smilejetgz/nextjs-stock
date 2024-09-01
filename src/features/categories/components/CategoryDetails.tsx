@@ -1,6 +1,7 @@
 'use client';
 
 import { useGetCategory } from '@/features/categories/hooks/api';
+import { Button } from '@/features/shadcn/components/ui/button';
 import {
   Card,
   CardContent,
@@ -12,19 +13,35 @@ import {
 import { Separator } from '@/features/shadcn/components/ui/separator';
 import { toDateString } from '@/features/shared/helpers/date';
 import { Loading, NotFound } from '@/features/ui/components/Status';
+import { ArrowLeftToLine } from 'lucide-react';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
-const CategoryDetail = () => {
+const CategoryDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { data: category, isLoading } = useGetCategory(+id);
 
   return (
     <Card className="sm:col-span-full" x-chunk="dashboard-06-chunk-0">
       <CardHeader>
-        <CardTitle>Category Details</CardTitle>
-        <CardDescription>ID: {id}</CardDescription>
+        <div className="flex items-center">
+          <div className="flex-col">
+            <CardTitle>Category Details</CardTitle>
+            <CardDescription className="mt-2">ID: {id}</CardDescription>
+          </div>
+          <div className="ml-auto flex justify-items-end gap-2">
+            <Button size="sm">
+              <Link href="/categories" className="flex h-7 items-center gap-1">
+                <ArrowLeftToLine className="h-3.5 w-3.5" />
+                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                  Categories
+                </span>
+              </Link>
+            </Button>
+          </div>
+        </div>
+        <Separator className="my-4" />
       </CardHeader>
-      <Separator className="my-4" />
       {isLoading ? (
         <Loading label="Loading category details..." />
       ) : !category ? (
@@ -53,4 +70,4 @@ const CategoryDetail = () => {
   );
 };
 
-export default CategoryDetail;
+export default CategoryDetails;

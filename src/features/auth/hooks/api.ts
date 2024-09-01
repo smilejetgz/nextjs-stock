@@ -1,8 +1,5 @@
-import {
-  type Profile,
-  type Signup,
-  type ApiError,
-} from '@/features/auth/types';
+import { type Profile, type Signup } from '@/features/auth/types';
+import { type ApiError } from '@/features/shared/types';
 import { useMutation } from '@tanstack/react-query';
 
 export const useRegister = () => {

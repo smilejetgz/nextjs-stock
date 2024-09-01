@@ -1,7 +1,7 @@
-import CategoryDetail from '@/features/categories/components/CategoryDetail';
+import CategoryDetails from '@/features/categories/components/CategoryDetails';
 
 const CategoryDetailsPage = () => {
-  return <CategoryDetail />;
+  return <CategoryDetails />;
 };
 
 export default CategoryDetailsPage;

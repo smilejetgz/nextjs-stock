@@ -16,7 +16,3 @@ export interface Profile {
   name: string;
   role: Role;
 }
-
-export interface ApiError {
-  error?: string;
-}

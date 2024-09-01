@@ -24,7 +24,9 @@ const CategoryPage = () => {
         <div className="flex items-center">
           <div className="flex-col">
             <CardTitle>Categories</CardTitle>
-            <CardDescription>Manage your categories.</CardDescription>
+            <CardDescription className="mt-2">
+              Manage your categories.
+            </CardDescription>
           </div>
           <div className="ml-auto flex justify-items-end gap-2">
             <Button size="sm">

@@ -1,4 +1,6 @@
+import CreateCategory from '@/features/categories/components/CreateCatgory';
+
 const AddCategoryPage = () => {
-  return <div>Add Category Page</div>;
+  return <CreateCategory></CreateCategory>;
 };
 export default AddCategoryPage;
