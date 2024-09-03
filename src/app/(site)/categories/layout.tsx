@@ -1,11 +1,11 @@
 import { type ReactNode } from 'react';
 
-interface HomeLayoutProps {
+interface CategoryPageLayoutProps {
   children: ReactNode;
   modal: ReactNode;
 }
 
-const CategoryLayout = ({ children, modal }: HomeLayoutProps) => {
+const CategoryPageLayout = ({ children, modal }: CategoryPageLayoutProps) => {
   return (
     <>
       {children}
@@ -14,4 +14,4 @@ const CategoryLayout = ({ children, modal }: HomeLayoutProps) => {
   );
 };
 
-export default CategoryLayout;
+export default CategoryPageLayout;
