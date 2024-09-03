@@ -7,12 +7,18 @@ import {
 } from '@/features/categories/hooks/api';
 import { type UpdateCategoryInput } from '@/features/categories/types';
 import { useToast } from '@/features/shadcn/hooks/use-toast';
-import { useParams, useRouter } from 'next/navigation';
+import { Loading, NotFound } from '@/features/ui/components/Status';
+import {
+  useParams,
+  useRouter,
+  useSelectedLayoutSegment,
+} from 'next/navigation';
 
 const EditCategory = () => {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
-  console.log('Get', id);
+  const test = useSelectedLayoutSegment();
+  console.log('Get', test);
   const { data: category, isLoading } = useGetCategory(+id);
   const { mutateAsync } = useEditCategory(+id);
   const { toast } = useToast();
@@ -29,8 +35,8 @@ const EditCategory = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (!category) return <div>No leave data found</div>;
+  if (isLoading) return <Loading label="Loading..." />;
+  if (!category) return <NotFound label="No leave data found." />;
   return (
     <CategoryForm
       kind="edit"

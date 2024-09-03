@@ -23,10 +23,9 @@ import {
 } from '@/features/shadcn/components/ui/form';
 import { Input } from '@/features/shadcn/components/ui/input';
 import { Separator } from '@/features/shadcn/components/ui/separator';
+import { ButtonBack } from '@/features/ui/components/Buttons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { capitalize } from 'lodash';
-import { ArrowLeftToLine } from 'lucide-react';
-import Link from 'next/link';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 
 export type CategoryFormProps =
@@ -87,14 +86,7 @@ const CategoryForm = (props: CategoryFormProps) => {
               )}
             />
             <div className="mt-6 flex justify-between">
-              <Button size="sm" type="button" className="rounded-full">
-                <Link href="/categories" className="flex items-center gap-1">
-                  <ArrowLeftToLine className="h-3.5 w-3.5" />
-                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                    Category
-                  </span>
-                </Link>
-              </Button>
+              <ButtonBack />
               <Button
                 type="submit"
                 size="sm"

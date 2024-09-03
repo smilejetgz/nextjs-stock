@@ -22,6 +22,7 @@ const CreateCategory = () => {
       toast({ description: errorMessage });
     }
   };
+
   return <CategoryForm kind="create" onSubmit={createCategory}></CategoryForm>;
 };
 
