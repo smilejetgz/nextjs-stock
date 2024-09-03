@@ -21,18 +21,20 @@ export const findById = async (id: number) => {
 
 export const checkUserNameExists = async ({
   name,
-}: Pick<Signup, 'name'>): Promise<boolean> => {
+  userId,
+}: Pick<Signup, 'name'> & { userId?: number }): Promise<boolean> => {
   const userWithName = await db.user.findUnique({
-    where: { name },
+    where: { name, ...(userId && { NOT: { id: userId } }) },
   });
   return !!userWithName;
 };
 
 export const checkUserEmailExists = async ({
   email,
-}: Pick<Signup, 'email'>): Promise<boolean> => {
+  userId,
+}: Pick<Signup, 'email'> & { userId?: number }): Promise<boolean> => {
   const userWithEmail = await db.user.findUnique({
-    where: { email },
+    where: { email, ...(userId && { NOT: { id: userId } }) },
   });
 
   return !!userWithEmail;

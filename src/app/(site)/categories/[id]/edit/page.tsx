@@ -1,5 +1,7 @@
+import EditCategory from '@/features/categories/components/EditCategory';
+
 const CategoryEditsPage = () => {
-  return <div>Category Edits Page</div>;
+  return <EditCategory></EditCategory>;
 };
 
 export default CategoryEditsPage;

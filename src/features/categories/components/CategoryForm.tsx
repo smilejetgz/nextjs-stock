@@ -1,3 +1,5 @@
+'use client';
+
 import {
   type CategoryDetails,
   type UpdateCategoryInput,
@@ -34,7 +36,7 @@ export type CategoryFormProps =
     }
   | {
       kind: 'edit';
-      category: CategoryDetails;
+      category: Omit<CategoryDetails, 'user'>;
       onSubmit: SubmitHandler<UpdateCategoryInput>;
     };
 
@@ -50,30 +52,19 @@ const CategoryForm = (props: CategoryFormProps) => {
     resolver: zodResolver(
       kind === 'create' ? validators.add : validators.update,
     ),
-    defaultValues: kind === 'edit' ? props.category : undefined,
+    defaultValues:
+      kind === 'edit'
+        ? { name: props.category.name || '' } // Ensure the default value is never undefined
+        : { name: '' },
   });
-  console.log(kind, onSubmit);
+
   return (
     <Card className="mx-auto w-full max-w-xl">
       <CardHeader>
-        <div className="flex items-center">
-          <div className="flex-col">
-            <CardTitle>{title} Category</CardTitle>
-            <CardDescription className="mt-2">
-              Please enter the name to {kind} a new category.
-            </CardDescription>
-          </div>
-          <div className="ml-auto flex justify-items-end gap-2">
-            <Button size="sm">
-              <Link href="/categories" className="flex h-7 items-center gap-1">
-                <ArrowLeftToLine className="h-3.5 w-3.5" />
-                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                  Category
-                </span>
-              </Link>
-            </Button>
-          </div>
-        </div>
+        <CardTitle>{title} Category</CardTitle>
+        <CardDescription className="mt-2">
+          Please enter the name to {kind} a new category.
+        </CardDescription>
         <Separator className="my-4" />
       </CardHeader>
       <CardContent>
@@ -94,11 +85,19 @@ const CategoryForm = (props: CategoryFormProps) => {
                   </FormControl>
                 </FormItem>
               )}
-            ></FormField>
-            <div className="flex justify-end">
+            />
+            <div className="mt-6 flex justify-between">
+              <Button size="sm" type="button" className="rounded-full">
+                <Link href="/categories" className="flex items-center gap-1">
+                  <ArrowLeftToLine className="h-3.5 w-3.5" />
+                  <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                    Category
+                  </span>
+                </Link>
+              </Button>
               <Button
                 type="submit"
-                className="mt-4"
+                size="sm"
                 disabled={!form.formState.isValid}
               >
                 Submit

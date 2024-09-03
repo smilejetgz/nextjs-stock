@@ -1,4 +1,5 @@
 import {
+  type UpdateCategoryInput,
   type AddCategoryInput,
   type CategoryDetails,
   type CategoryItem,
@@ -39,6 +40,48 @@ export const useCreateCategory = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(input),
+      });
+
+      if (!res.ok) {
+        const errorData = await (res.json() as Promise<ApiError>);
+        throw new Error(errorData.error || 'An error occurred');
+      }
+
+      return await (res.json() as Promise<Omit<CategoryDetails, 'user'>>);
+    },
+  });
+};
+
+export const useEditCategory = (id: CategoryDetails['id']) => {
+  return useMutation({
+    mutationFn: async (input: UpdateCategoryInput) => {
+      const res = await fetch(`/api/categories/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(input),
+      });
+
+      if (!res.ok) {
+        const errorData = await (res.json() as Promise<ApiError>);
+        throw new Error(errorData.error || 'An error occurred');
+      }
+
+      return await (res.json() as Promise<Omit<CategoryDetails, 'user'>>);
+    },
+  });
+};
+
+export const useRemoveCategory = (id: CategoryDetails['id']) => {
+  return useMutation({
+    mutationFn: async () => {
+      const res = await fetch(`/api/categories/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
       });
 
       if (!res.ok) {

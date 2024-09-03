@@ -24,9 +24,12 @@ export const POST = async (req: Request) => {
 
     const isNameTaken = await api.checkCategoryNameExists({ name: form.name });
     if (isNameTaken) {
-      return new Response(JSON.stringify({ error: 'Name already taken' }), {
-        status: 409,
-      });
+      return new Response(
+        JSON.stringify({ error: 'Category name already taken' }),
+        {
+          status: 409,
+        },
+      );
     }
 
     const category = await api.add(+session.user.id, form);

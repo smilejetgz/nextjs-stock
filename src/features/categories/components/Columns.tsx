@@ -1,5 +1,3 @@
-'use client';
-
 import { type CategoryItem } from '@/features/categories/types';
 import { Button } from '@/features/shadcn/components/ui/button';
 import {

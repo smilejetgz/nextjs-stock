@@ -1,4 +1,8 @@
-import { type AddCategoryInput } from '@/features/categories/types';
+import {
+  type AddCategoryInput,
+  type UpdateCategoryInput,
+  type CategoryDetails,
+} from '@/features/categories/types';
 import db from '@/features/shared/db';
 
 export const findAll = async () => {
@@ -30,9 +34,14 @@ export const findById = async (id: number) => {
 
 export const checkCategoryNameExists = async ({
   name,
-}: Pick<AddCategoryInput, 'name'>): Promise<boolean> => {
+  id,
+}: Partial<Pick<CategoryDetails, 'name'>> &
+  Partial<Pick<CategoryDetails, 'id'>>): Promise<boolean> => {
   const categoryWithName = await db.category.findUnique({
-    where: { name },
+    where: {
+      name,
+      ...(id && { NOT: { id } }),
+    },
   });
   return !!categoryWithName;
 };
@@ -43,6 +52,28 @@ export const add = async (userId: number, input: AddCategoryInput) => {
       ...input,
       userId,
     },
+  });
+
+  return category;
+};
+
+export const update = async (
+  categoryId: number,
+  input: UpdateCategoryInput,
+) => {
+  const category = await db.category.update({
+    where: { id: categoryId },
+    data: {
+      ...input,
+    },
+  });
+
+  return category;
+};
+
+export const remove = async (categoryId: number) => {
+  const category = await db.category.delete({
+    where: { id: categoryId },
   });
 
   return category;
