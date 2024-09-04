@@ -8,17 +8,11 @@ import {
 import { type UpdateCategoryInput } from '@/features/categories/types';
 import { useToast } from '@/features/shadcn/hooks/use-toast';
 import { Loading, NotFound } from '@/features/ui/components/Status';
-import {
-  useParams,
-  useRouter,
-  useSelectedLayoutSegment,
-} from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 const EditCategory = () => {
   const router = useRouter();
   const { id } = useParams<{ id: string }>();
-  const test = useSelectedLayoutSegment();
-  console.log('Get', test);
   const { data: category, isLoading } = useGetCategory(+id);
   const { mutateAsync } = useEditCategory(+id);
   const { toast } = useToast();
@@ -35,8 +29,18 @@ const EditCategory = () => {
     }
   };
 
-  if (isLoading) return <Loading label="Loading..." />;
-  if (!category) return <NotFound label="No leave data found." />;
+  if (isLoading)
+    return (
+      <div className="flex min-h-[80vh] items-center justify-center">
+        <Loading label="Loading..." />
+      </div>
+    );
+  if (!category)
+    return (
+      <div className="flex min-h-[80vh] items-center justify-center">
+        <NotFound label="No Category data found." />
+      </div>
+    );
   return (
     <CategoryForm
       kind="edit"

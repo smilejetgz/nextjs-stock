@@ -1,5 +1,7 @@
+import RemoveCategory from '@/features/categories/components/RemoveCategory';
+
 const CategoryDeletePage = () => {
-  return <div>Category Delete Page</div>;
+  return <RemoveCategory />;
 };
 
 export default CategoryDeletePage;
