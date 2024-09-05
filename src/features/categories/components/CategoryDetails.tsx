@@ -11,7 +11,7 @@ import {
 } from '@/features/shadcn/components/ui/card';
 import { Separator } from '@/features/shadcn/components/ui/separator';
 import { toDateString } from '@/features/shared/helpers/date';
-import { ButtonPush } from '@/features/ui/components/Buttons';
+import { ButtonBack } from '@/features/ui/components/Buttons';
 import { Loading, NotFound } from '@/features/ui/components/Status';
 import { useParams } from 'next/navigation';
 
@@ -52,7 +52,7 @@ const CategoryDetails = () => {
       )}
       <CardFooter>
         <div className="flex justify-start">
-          <ButtonPush path="/categories" />
+          <ButtonBack />
         </div>
       </CardFooter>
     </Card>

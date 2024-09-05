@@ -24,7 +24,7 @@ import {
 import { Input } from '@/features/shadcn/components/ui/input';
 import { Separator } from '@/features/shadcn/components/ui/separator';
 import { toDateString } from '@/features/shared/helpers/date';
-import { ButtonPush } from '@/features/ui/components/Buttons';
+import { ButtonBack } from '@/features/ui/components/Buttons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { capitalize } from 'lodash';
 import { useForm, type SubmitHandler } from 'react-hook-form';
@@ -92,7 +92,7 @@ const CategoryForm = (props: CategoryFormProps) => {
               {` ${toDateString(props.category.updatedAt)}`}
             </p>
             <div className="mt-6 flex justify-between">
-              <ButtonPush path="/categories" />
+              <ButtonBack />
               <Button type="button" size="sm" onClick={onSubmit}>
                 Confirm
               </Button>
@@ -118,7 +118,7 @@ const CategoryForm = (props: CategoryFormProps) => {
                 )}
               />
               <div className="mt-6 flex justify-between">
-                <ButtonPush path="/categories" />
+                <ButtonBack />
                 <Button
                   type="submit"
                   size="sm"

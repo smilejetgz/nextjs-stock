@@ -9,6 +9,7 @@ import { type UpdateCategoryInput } from '@/features/categories/types';
 import { useToast } from '@/features/shadcn/hooks/use-toast';
 import { Loading, NotFound } from '@/features/ui/components/Status';
 import { useParams, useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 const EditCategory = () => {
   const router = useRouter();
@@ -16,12 +17,16 @@ const EditCategory = () => {
   const { data: category, isLoading } = useGetCategory(+id);
   const { mutateAsync } = useEditCategory(+id);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const editCategory = async (form: UpdateCategoryInput) => {
     try {
       await mutateAsync(form);
       toast({ description: 'Category updated successfully.' });
-      router.push('/categories');
+      queryClient.invalidateQueries({
+        queryKey: ['categories'],
+      });
+      router.back();
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : 'Failed to update category.';

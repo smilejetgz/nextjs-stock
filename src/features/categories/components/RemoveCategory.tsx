@@ -9,6 +9,7 @@ import { useToast } from '@/features/shadcn/hooks/use-toast';
 import { Loading, NotFound } from '@/features/ui/components/Status';
 import CategoryForm from '@/features/categories/components/CategoryForm';
 import { useParams, useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 const RemoveCategory = () => {
   const router = useRouter();
@@ -16,12 +17,16 @@ const RemoveCategory = () => {
   const { data: category, isLoading } = useGetCategory(+id);
   const { mutateAsync } = useRemoveCategory(+id);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const removeCategory = async () => {
     try {
       await mutateAsync();
       toast({ description: 'Category deleted successfully.' });
-      router.push('/categories');
+      queryClient.invalidateQueries({
+        queryKey: ['categories'],
+      });
+      router.back();
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : 'Failed to update category.';
