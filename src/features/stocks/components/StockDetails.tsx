@@ -13,7 +13,9 @@ import { Separator } from '@/features/shadcn/components/ui/separator';
 import { toDateString } from '@/features/shared/helpers/date';
 import { ButtonBack } from '@/features/ui/components/Buttons';
 import { Loading, NotFound } from '@/features/ui/components/Status';
+import { ScrollArea } from '@/features/shadcn/components/ui/scroll-area';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
 const StockDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -31,10 +33,28 @@ const StockDetails = () => {
       ) : !stock ? (
         <NotFound label="Stock not found" />
       ) : (
-        <CardContent>
+        <CardContent className="text-left">
+          <div className="flex justify-center">
+            <Image
+              alt="Product image"
+              className="aspect-square rounded-md object-cover"
+              height="124"
+              src={String(stock.image)}
+              width="124"
+            />
+          </div>
+          <Separator className="my-4" />
           <p>
             <strong>Name:</strong>
             {` ${stock.name}`}
+          </p>
+          <p>
+            <strong>Category:</strong>
+            {` ${stock.category.name}`}
+          </p>
+          <p>
+            <strong>Amount:</strong>
+            {` ${stock.amount}`}
           </p>
           <p>
             <strong>Created by:</strong>
@@ -48,6 +68,10 @@ const StockDetails = () => {
             <strong>Last modified:</strong>
             {` ${toDateString(stock.updatedAt)}`}
           </p>
+          <strong>Detail:</strong>
+          <ScrollArea className="h-[150px] rounded-md border p-2">
+            <div>{` ${stock.detail}`}</div>
+          </ScrollArea>
         </CardContent>
       )}
       <CardFooter>
