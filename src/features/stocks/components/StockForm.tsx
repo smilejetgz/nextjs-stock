@@ -28,6 +28,8 @@ import { ButtonBack } from '@/features/ui/components/Buttons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { capitalize } from 'lodash';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { ScrollArea } from '@/features/shadcn/components/ui/scroll-area';
+import Image from 'next/image';
 
 export type StockFormProps =
   | {
@@ -72,12 +74,30 @@ const StockForm = (props: StockFormProps) => {
         </CardDescription>
         <Separator className="my-4" />
       </CardHeader>
-      <CardContent>
+      <CardContent className="text-left">
         {kind === 'remove' ? (
           <>
+            <div className="flex justify-center">
+              <Image
+                alt="Product image"
+                className="aspect-square rounded-md object-cover"
+                height="124"
+                src={String(props.stock.image)}
+                width="124"
+              />
+            </div>
+            <Separator className="my-4" />
             <p>
               <strong>Name:</strong>
               {` ${props.stock.name}`}
+            </p>
+            <p>
+              <strong>Category:</strong>
+              {` ${props.stock.category.name}`}
+            </p>
+            <p>
+              <strong>Amount:</strong>
+              {` ${props.stock.amount}`}
             </p>
             <p>
               <strong>Created by:</strong>
@@ -91,6 +111,10 @@ const StockForm = (props: StockFormProps) => {
               <strong>Last modified:</strong>
               {` ${toDateString(props.stock.updatedAt)}`}
             </p>
+            <strong>Detail:</strong>
+            <ScrollArea className="h-[150px] rounded-md border p-2">
+              <div>{` ${props.stock.detail}`}</div>
+            </ScrollArea>
             <div className="mt-6 flex justify-between">
               <ButtonBack />
               <Button type="button" size="sm" onClick={onSubmit}>
