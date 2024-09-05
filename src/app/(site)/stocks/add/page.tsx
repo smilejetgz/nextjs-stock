@@ -1,4 +1,6 @@
+import CreateStock from '@/features/stocks/components/CreateStock';
+
 const AddStockPage = () => {
-  return <div>Add Stock Page</div>;
+  return <CreateStock></CreateStock>;
 };
 export default AddStockPage;
