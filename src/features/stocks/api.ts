@@ -10,6 +10,13 @@ export const findAll = async () => {
     orderBy: {
       createdAt: 'desc',
     },
+    include: {
+      category: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
 
   return stocks;
@@ -23,6 +30,12 @@ export const findById = async (id: number) => {
         select: {
           name: true,
           email: true,
+        },
+      },
+      category: {
+        select: {
+          id: true,
+          name: true,
         },
       },
     },
