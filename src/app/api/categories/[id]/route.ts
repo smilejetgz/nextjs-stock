@@ -60,6 +60,19 @@ export const DELETE = async (_req: Request, { params: { id } }: PathParams) => {
     });
   }
   try {
+    const isCategoryInStock = await api.isCategoryInUseInStock({ id: +id });
+    if (isCategoryInStock) {
+      return new Response(
+        JSON.stringify({
+          error:
+            'Cannot delete this category because it is being used in Stock. Please remove the related stock entries first.',
+        }),
+        {
+          status: 409,
+        },
+      );
+    }
+
     const category = await api.remove(+id);
     return new Response(JSON.stringify(category));
   } catch (error) {

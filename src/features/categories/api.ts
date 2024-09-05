@@ -46,6 +46,17 @@ export const checkCategoryNameExists = async ({
   return !!categoryWithName;
 };
 
+export const isCategoryInUseInStock = async ({
+  id,
+}: Partial<Pick<CategoryDetails, 'id'>>): Promise<boolean> => {
+  const categoryWithId = await db.stock.findFirst({
+    where: {
+      CategoryId: id,
+    },
+  });
+  return !!categoryWithId;
+};
+
 export const add = async (userId: number, input: AddCategoryInput) => {
   const category = await db.category.create({
     data: {
