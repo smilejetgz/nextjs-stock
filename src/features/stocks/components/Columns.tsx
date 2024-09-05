@@ -13,6 +13,7 @@ import { DataTableColumnHeader } from '@/features/ui/components/DataTable/DataTa
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export type StockListProps = {
   stocks: StockItem[];
@@ -26,12 +27,39 @@ export const columns: ColumnDef<StockItem>[] = [
     ),
   },
   {
-    accessorKey: 'name',
+    accessorKey: 'image',
     header: ({ column }) => (
       <DataTableColumnHeader
         column={column}
-        title="Name"
-        className="w-[50px]"
+        title="Image"
+        className="hidden justify-center md:table-cell"
+      />
+    ),
+    cell: ({ row }) => {
+      return (
+        <Image
+          alt="Product image"
+          className="hidden aspect-square rounded-md object-cover md:table-cell"
+          height="64"
+          src={row.getValue('image')}
+          width="64"
+        />
+      );
+    },
+  },
+  {
+    accessorKey: 'name',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Name" className="w-auto" />
+    ),
+  },
+  {
+    accessorKey: 'category.name',
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        column={column}
+        title="Categories"
+        className="w-auto"
       />
     ),
   },
@@ -39,7 +67,7 @@ export const columns: ColumnDef<StockItem>[] = [
     accessorKey: 'createdAt',
     header: ({ column }) => (
       <DataTableColumnHeader
-        className="hidden justify-center sm:table-cell"
+        className="hidden justify-center md:table-cell"
         column={column}
         title="Created On"
       />
@@ -49,7 +77,7 @@ export const columns: ColumnDef<StockItem>[] = [
       const formatted = toDateString(createdAt);
 
       return (
-        <div className="hidden justify-center font-medium sm:table-cell">
+        <div className="hidden justify-center font-medium md:table-cell">
           {formatted}
         </div>
       );
@@ -59,7 +87,7 @@ export const columns: ColumnDef<StockItem>[] = [
     accessorKey: 'updatedAt',
     header: ({ column }) => (
       <DataTableColumnHeader
-        className="hidden justify-center sm:table-cell"
+        className="hidden justify-center md:table-cell"
         column={column}
         title="Last Modified"
       />
@@ -69,7 +97,7 @@ export const columns: ColumnDef<StockItem>[] = [
       const formatted = toDateString(updatedAt);
 
       return (
-        <div className="hidden justify-center font-medium sm:table-cell">
+        <div className="hidden justify-center font-medium md:table-cell">
           {formatted}
         </div>
       );

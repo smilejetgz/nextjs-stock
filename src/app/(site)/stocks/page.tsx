@@ -19,7 +19,7 @@ const StockPage = () => {
   const { data, status } = useGetStocks();
 
   return (
-    <Card x-chunk="dashboard-06-chunk-0">
+    <Card>
       <CardHeader>
         <div className="flex items-center">
           <div className="flex-col">
