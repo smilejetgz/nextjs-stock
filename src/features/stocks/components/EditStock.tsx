@@ -23,6 +23,9 @@ const EditStock = () => {
       queryClient.invalidateQueries({
         queryKey: ['stocks'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['stock', +id],
+      });
       router.back();
     } catch (error) {
       const errorMessage =

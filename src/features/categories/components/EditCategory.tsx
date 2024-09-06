@@ -26,6 +26,9 @@ const EditCategory = () => {
       queryClient.invalidateQueries({
         queryKey: ['categories'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['category', +id],
+      });
       router.back();
     } catch (error) {
       const errorMessage =
