@@ -12,8 +12,8 @@ export const StockCountByCategory = async () => {
 
   return stockCountByCategory
     .map((category) => ({
-      name: category.name,
-      Stock: Number(category._count.Stock),
+      category: category.name,
+      stock: Number(category._count.Stock),
     }))
-    .sort((a, b) => b.Stock - a.Stock);
+    .sort((a, b) => b.stock - a.stock);
 };
