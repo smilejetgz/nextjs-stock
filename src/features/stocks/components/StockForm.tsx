@@ -102,7 +102,11 @@ const StockForm = (props: StockFormProps) => {
                 alt="Product image"
                 className="aspect-square rounded-md object-cover"
                 height="124"
-                src={String(props.stock.image)}
+                src={
+                  !props.stock.image
+                    ? '/assets/images/no-image.png'
+                    : getImagePath(props.stock.image)
+                }
                 width="124"
               />
             </div>

@@ -98,6 +98,11 @@ export const add = async (userId: number, input: AddStockInput) => {
 };
 
 export const remove = async (stockId: number) => {
+  const { image: stockImage } = await findById(stockId);
+  if (stockImage) {
+    await removeDirFromFile(stockImage);
+  }
+
   const stock = await db.stock.delete({
     where: { id: stockId },
   });
