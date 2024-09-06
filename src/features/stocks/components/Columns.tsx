@@ -14,6 +14,7 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
 import Image from 'next/image';
+import { capitalize } from 'lodash';
 
 export type StockListProps = {
   stocks: StockItem[];
@@ -99,6 +100,23 @@ export const columns: ColumnDef<StockItem>[] = [
       return (
         <div className="hidden justify-center font-medium md:table-cell">
           {formatted}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: 'status',
+    header: ({ column }) => (
+      <DataTableColumnHeader
+        className="hidden justify-center md:table-cell"
+        column={column}
+        title="Status"
+      />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="hidden justify-center font-medium md:table-cell">
+          {capitalize(row.getValue('status'))}
         </div>
       );
     },

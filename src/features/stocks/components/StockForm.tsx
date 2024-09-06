@@ -20,6 +20,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/features/shadcn/components/ui/form';
 import { Input } from '@/features/shadcn/components/ui/input';
 import { Separator } from '@/features/shadcn/components/ui/separator';
@@ -30,15 +31,28 @@ import { capitalize } from 'lodash';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { ScrollArea } from '@/features/shadcn/components/ui/scroll-area';
 import Image from 'next/image';
+import { Textarea } from '@/features/shadcn/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/features/shadcn/components/ui/select';
+import { useGetCategories } from '@/features/categories/hooks/api';
+import { type CategoryItem } from '@/features/categories/types';
+import { Loading, NotFound } from '@/features/ui/components/Status';
 
 export type StockFormProps =
   | {
       kind: 'create';
+      categories?: CategoryItem[];
       onSubmit: SubmitHandler<AddStockInput>;
     }
   | {
       kind: 'edit';
       stock: Omit<StockDetails, 'user'>;
+      categories?: CategoryItem[];
       onSubmit: SubmitHandler<UpdateStockInput>;
     }
   | {
@@ -50,6 +64,8 @@ export type StockFormProps =
 const StockForm = (props: StockFormProps) => {
   const { kind, onSubmit } = props;
   const title = `${capitalize(kind)}`;
+  const { data: categories, isLoading } = useGetCategories();
+
   const form = useForm<
     typeof onSubmit extends SubmitHandler<AddStockInput>
       ? AddStockInput
@@ -60,7 +76,15 @@ const StockForm = (props: StockFormProps) => {
       kind === 'create' ? validators.add : validators.update,
     ),
     defaultValues:
-      kind === 'edit' ? { name: props.stock.name || '' } : { name: '' },
+      kind === 'edit'
+        ? {
+            name: props.stock.name || '',
+            amount: Number(props.stock.amount) || 0,
+            detail: props.stock.detail || '',
+            status: props.stock.status,
+            CategoryId: props.stock.CategoryId,
+          }
+        : { name: '', amount: 0 },
   });
 
   return (
@@ -124,13 +148,13 @@ const StockForm = (props: StockFormProps) => {
           </>
         ) : (
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="off">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Stock Name</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter stock name"
@@ -138,15 +162,119 @@ const StockForm = (props: StockFormProps) => {
                         {...field}
                       />
                     </FormControl>
+                    <FormMessage></FormMessage>
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Amount</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter stock amount"
+                        className="max-w-full"
+                        type="number"
+                        {...field}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
+                    </FormControl>
+                    <FormMessage></FormMessage>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="detail"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Excerpt</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Taylor's version"
+                        {...field}
+                        className="resize-none"
+                      ></Textarea>
+                    </FormControl>
+                    <FormMessage></FormMessage>
+                  </FormItem>
+                )}
+              ></FormField>
+              <FormField
+                control={form.control}
+                name="status"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Status</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={(value) => field.onChange(value)}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="APPROVED">Approved</SelectItem>
+                          <SelectItem value="REJECTED">Rejected</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage></FormMessage>
+                  </FormItem>
+                )}
+              ></FormField>
+              {isLoading ? (
+                <Loading label="Category Loading..." />
+              ) : !categories ? (
+                <NotFound label="Please add the category first." />
+              ) : (
+                <FormField
+                  control={form.control}
+                  name="CategoryId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Category</FormLabel>
+                      <FormControl>
+                        <Select
+                          onValueChange={(value) =>
+                            field.onChange(Number(value))
+                          }
+                          defaultValue={
+                            kind === 'create'
+                              ? undefined
+                              : String(props.stock.CategoryId)
+                          }
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select Category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categories.map((category) => (
+                              <SelectItem
+                                key={category.id}
+                                value={String(category.id)}
+                              >
+                                {category.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+
               <div className="mt-6 flex justify-between">
                 <ButtonBack />
                 <Button
                   type="submit"
                   size="sm"
-                  disabled={!form.formState.isValid}
+                  disabled={!form.formState.isValid && isLoading}
                 >
                   Confirm
                 </Button>

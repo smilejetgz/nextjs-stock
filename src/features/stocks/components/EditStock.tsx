@@ -43,6 +43,7 @@ const EditStock = () => {
         <NotFound label="No Stock data found." />
       </div>
     );
+
   return <StockForm kind="edit" stock={stock} onSubmit={editStock}></StockForm>;
 };
 
