@@ -4,6 +4,7 @@ import {
   type StockDetails,
 } from '@/features/stocks/types';
 import db from '@/features/shared/db';
+import { removeDirFromFile, saveFile } from '@/features/shared/helpers/file';
 
 export const findAll = async () => {
   const stocks = await db.stock.findMany({
@@ -59,22 +60,38 @@ export const checkStockNameExists = async ({
   return !!stockWithName;
 };
 
-export const add = async (userId: number, input: AddStockInput) => {
-  const stock = await db.stock.create({
+export const update = async (id: number, input: UpdateStockInput) => {
+  let { image: existingImage } = await findById(id);
+
+  if (input.image) {
+    const currentImage = existingImage;
+    existingImage = await saveFile(input.image);
+    if (currentImage) {
+      await removeDirFromFile(currentImage);
+    }
+  }
+
+  const stock = await db.stock.update({
+    where: { id },
     data: {
       ...input,
-      userId,
+      image: existingImage,
     },
   });
 
   return stock;
 };
 
-export const update = async (stockId: number, input: UpdateStockInput) => {
-  const stock = await db.stock.update({
-    where: { id: stockId },
+export const add = async (userId: number, input: AddStockInput) => {
+  let image = null;
+  if (input.image) {
+    image = await saveFile(input.image);
+  }
+  const stock = await db.stock.create({
     data: {
       ...input,
+      image,
+      userId,
     },
   });
 

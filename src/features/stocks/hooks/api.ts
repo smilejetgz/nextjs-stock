@@ -55,20 +55,21 @@ export const useCreateStock = () => {
 export const useEditStock = (id: StockDetails['id']) => {
   return useMutation({
     mutationFn: async (input: UpdateStockInput) => {
+      const formData = new FormData();
+      if (input.name) formData.append('name', input.name);
+      if (input.amount) formData.append('amount', String(input.amount));
+      if (input.detail) formData.append('detail', input.detail);
+      if (input.image) formData.append('image', input.image);
+      if (input.status) formData.append('status', input.status);
+      if (input.CategoryId)
+        formData.append('CategoryId', String(input.CategoryId));
       const res = await fetch(`/api/stocks/${id}`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(input),
+        body: formData,
       });
+      const stock = await (res.json() as Promise<UpdateStockInput>);
 
-      if (!res.ok) {
-        const errorData = await (res.json() as Promise<ApiError>);
-        throw new Error(errorData.error || 'An error occurred');
-      }
-
-      return await (res.json() as Promise<Omit<StockDetails, 'user'>>);
+      return stock;
     },
   });
 };

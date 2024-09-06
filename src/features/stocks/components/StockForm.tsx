@@ -51,7 +51,7 @@ export type StockFormProps =
     }
   | {
       kind: 'edit';
-      stock: Omit<StockDetails, 'user'>;
+      stock: Omit<StockDetails, 'user' | 'category'>;
       onSubmit: SubmitHandler<UpdateStockInput>;
     }
   | {
@@ -147,14 +147,14 @@ const StockForm = (props: StockFormProps) => {
             <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="off">
               <ImageUploader
                 defaultImage={
-                  props.kind === 'edit'
+                  kind === 'edit' && props.stock.image
                     ? getImagePath(props.stock.image)
                     : '/assets/images/no-image.png'
                 }
                 onImageChanged={(image) => {
                   form.setValue('image', image, { shouldValidate: true });
                 }}
-                error={form.formState.errors.image}
+                error={form.formState.errors.image?.message}
               ></ImageUploader>
               <FormField
                 control={form.control}
@@ -185,7 +185,7 @@ const StockForm = (props: StockFormProps) => {
                         className="max-w-full"
                         type="number"
                         {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        onChange={(e) => field.onChange(e.target.value)}
                       />
                     </FormControl>
                     <FormMessage></FormMessage>
@@ -246,9 +246,7 @@ const StockForm = (props: StockFormProps) => {
                       <FormLabel>Category</FormLabel>
                       <FormControl>
                         <Select
-                          onValueChange={(value) =>
-                            field.onChange(Number(value))
-                          }
+                          onValueChange={(value) => field.onChange(value)}
                           defaultValue={
                             kind === 'create'
                               ? undefined

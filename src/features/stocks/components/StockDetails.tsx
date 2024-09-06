@@ -16,6 +16,7 @@ import { Loading, NotFound } from '@/features/ui/components/Status';
 import { ScrollArea } from '@/features/shadcn/components/ui/scroll-area';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
+import { getImagePath } from '@/features/shared/helpers/upload';
 
 const StockDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -39,7 +40,7 @@ const StockDetails = () => {
               alt="Product image"
               className="aspect-square rounded-md object-cover"
               height="124"
-              src={String(stock.image)}
+              src={getImagePath(String(stock.image))}
               width="124"
             />
           </div>

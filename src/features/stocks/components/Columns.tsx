@@ -13,6 +13,7 @@ import { DataTableColumnHeader } from '@/features/ui/components/DataTable/DataTa
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { type ColumnDef } from '@tanstack/react-table';
 import Link from 'next/link';
+import { getImagePath } from '@/features/shared/helpers/upload';
 import Image from 'next/image';
 import { capitalize } from 'lodash';
 
@@ -37,12 +38,13 @@ export const columns: ColumnDef<StockItem>[] = [
       />
     ),
     cell: ({ row }) => {
+      const image = String(row.getValue('image'));
       return (
         <Image
           alt="Product image"
           className="hidden aspect-square rounded-md object-cover md:table-cell"
           height="64"
-          src={row.getValue('image')}
+          src={getImagePath(image)}
           width="64"
         />
       );
@@ -78,9 +80,7 @@ export const columns: ColumnDef<StockItem>[] = [
       const formatted = toDateString(createdAt);
 
       return (
-        <div className="hidden justify-center font-medium md:table-cell">
-          {formatted}
-        </div>
+        <div className="hidden justify-center md:table-cell">{formatted}</div>
       );
     },
   },
@@ -98,9 +98,7 @@ export const columns: ColumnDef<StockItem>[] = [
       const formatted = toDateString(updatedAt);
 
       return (
-        <div className="hidden justify-center font-medium md:table-cell">
-          {formatted}
-        </div>
+        <div className="hidden justify-center md:table-cell">{formatted}</div>
       );
     },
   },
@@ -115,7 +113,7 @@ export const columns: ColumnDef<StockItem>[] = [
     ),
     cell: ({ row }) => {
       return (
-        <div className="hidden justify-center font-medium md:table-cell">
+        <div className="hidden justify-center md:table-cell">
           {capitalize(row.getValue('status'))}
         </div>
       );

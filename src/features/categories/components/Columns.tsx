@@ -49,9 +49,7 @@ export const columns: ColumnDef<CategoryItem>[] = [
       const formatted = toDateString(createdAt);
 
       return (
-        <div className="hidden justify-center font-medium sm:table-cell">
-          {formatted}
-        </div>
+        <div className="hidden justify-center sm:table-cell">{formatted}</div>
       );
     },
   },
@@ -69,9 +67,7 @@ export const columns: ColumnDef<CategoryItem>[] = [
       const formatted = toDateString(updatedAt);
 
       return (
-        <div className="hidden justify-center font-medium sm:table-cell">
-          {formatted}
-        </div>
+        <div className="hidden justify-center sm:table-cell">{formatted}</div>
       );
     },
   },
