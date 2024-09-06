@@ -1,4 +1,5 @@
 import * as z from 'zod';
+import { image } from '@/features/shared/validators/image';
 
 export const add = z.object({
   name: z
@@ -12,6 +13,7 @@ export const add = z.object({
     required_error: 'Status is required',
   }),
   CategoryId: z.number({ required_error: 'Category ID is required' }),
+  image,
 });
 
 export const update = add.partial();

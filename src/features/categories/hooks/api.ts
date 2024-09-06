@@ -7,13 +7,10 @@ import {
 import { type ApiError } from '@/features/shared/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export const useGetCategories = () => {
   return useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
-      await delay(500000);
       const res = await fetch('/api/categories');
       const categories = await (res.json() as Promise<CategoryItem[]>);
 

@@ -32,6 +32,8 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { ScrollArea } from '@/features/shadcn/components/ui/scroll-area';
 import Image from 'next/image';
 import { Textarea } from '@/features/shadcn/components/ui/textarea';
+import ImageUploader from '@/features/ui/components/ImageUploader';
+import { getImagePath } from '@/features/shared/helpers/upload';
 import {
   Select,
   SelectContent,
@@ -40,19 +42,16 @@ import {
   SelectValue,
 } from '@/features/shadcn/components/ui/select';
 import { useGetCategories } from '@/features/categories/hooks/api';
-import { type CategoryItem } from '@/features/categories/types';
 import { Loading, NotFound } from '@/features/ui/components/Status';
 
 export type StockFormProps =
   | {
       kind: 'create';
-      categories?: CategoryItem[];
       onSubmit: SubmitHandler<AddStockInput>;
     }
   | {
       kind: 'edit';
       stock: Omit<StockDetails, 'user'>;
-      categories?: CategoryItem[];
       onSubmit: SubmitHandler<UpdateStockInput>;
     }
   | {
@@ -78,13 +77,10 @@ const StockForm = (props: StockFormProps) => {
     defaultValues:
       kind === 'edit'
         ? {
-            name: props.stock.name || '',
-            amount: Number(props.stock.amount) || 0,
-            detail: props.stock.detail || '',
-            status: props.stock.status,
-            CategoryId: props.stock.CategoryId,
+            ...props.stock,
+            image: undefined,
           }
-        : { name: '', amount: 0 },
+        : { name: '', amount: 0, image: undefined },
   });
 
   return (
@@ -149,6 +145,17 @@ const StockForm = (props: StockFormProps) => {
         ) : (
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="off">
+              <ImageUploader
+                defaultImage={
+                  props.kind === 'edit'
+                    ? getImagePath(props.stock.image)
+                    : '/assets/images/no-image.png'
+                }
+                onImageChanged={(image) => {
+                  form.setValue('image', image, { shouldValidate: true });
+                }}
+                error={form.formState.errors.image}
+              ></ImageUploader>
               <FormField
                 control={form.control}
                 name="name"
