@@ -1,15 +1,16 @@
-// import { type StockItem } from '@/features/stocks/types';
-// import { useQuery } from '@tanstack/react-query';
+import { type StockCountByCategory } from '@/features/dashboard/type';
+import { useQuery } from '@tanstack/react-query';
 
-// export const useGetStocks = () => {
-//   return useQuery({
-//     queryKey: ['stocks'],
-//     queryFn: async () => {
-//       const res = await fetch('/api/stocks');
-//       const stocks = await (res.json() as Promise<StockItem[]>);
+export const useGetStockCountByCategory = () => {
+  return useQuery({
+    queryKey: ['stocks'],
+    queryFn: async () => {
+      const res = await fetch('/api/dashboard/stock-count-by-category');
+      const stockCountByCategory = await (res.json() as Promise<
+        StockCountByCategory[]
+      >);
 
-//       const FormatData =
-
-//     },
-//   });
-// };
+      return stockCountByCategory;
+    },
+  });
+};

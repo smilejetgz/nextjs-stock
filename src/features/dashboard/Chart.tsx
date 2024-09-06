@@ -1,8 +1,13 @@
 'use client';
 
-import * as React from 'react';
-import { Tag } from 'lucide-react';
-import { Label, Pie, PieChart } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  LabelList,
+  XAxis,
+  YAxis,
+} from 'recharts';
 
 import {
   Card,
@@ -18,112 +23,86 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/features/shadcn/components/ui/chart';
+import { useGetStockCountByCategory } from '@/features/dashboard/hooks/api';
+import { Loading, NotFound } from '@/features/ui/components/Status';
 
-export const description = 'A donut chart with text';
-
-const chartData = [
-  { browser: 'chrome', stocks: 540, fill: 'var(--color-chrome)' },
-  { browser: 'safari', stocks: 200, fill: 'var(--color-safari)' },
-  { browser: 'firefox', stocks: 287, fill: 'var(--color-firefox)' },
-  { browser: 'edge', stocks: 173, fill: 'var(--color-edge)' },
-  { browser: 'other', stocks: 190, fill: 'var(--color-other)' },
-];
-
-const chartConfig = {
-  stocks: {
-    label: 'Stocks',
-  },
-  chrome: {
-    label: 'Chrome',
+const chartConfigChartStockCountByCategory = {
+  stock: {
+    label: 'Stock',
     color: 'hsl(var(--chart-1))',
   },
-  safari: {
-    label: 'Safari',
-    color: 'hsl(var(--chart-2))',
-  },
-  firefox: {
-    label: 'Firefox',
-    color: 'hsl(var(--chart-3))',
-  },
-  edge: {
-    label: 'Edge',
-    color: 'hsl(var(--chart-4))',
-  },
-  other: {
-    label: 'Other',
-    color: 'hsl(var(--chart-5))',
+  label: {
+    color: 'hsl(var(--background))',
   },
 } satisfies ChartConfig;
 
-export function ChartStockAmount() {
-  const totalStocks = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.stocks, 0);
-  }, []);
+export function ChartStockCountByCategory() {
+  const {
+    data: stockCountByCategory,
+    isLoading: isLoadingStockCountByCategory,
+  } = useGetStockCountByCategory();
 
   return (
-    <Card className="flex flex-col">
-      <CardHeader className="items-center pb-0">
-        <CardTitle>Stocks</CardTitle>
-        <CardDescription>
-          Show a list of products related to the category
-        </CardDescription>
+    <Card>
+      <CardHeader>
+        <CardTitle>Stock</CardTitle>
+        <CardDescription>Stock count by category</CardDescription>
       </CardHeader>
-      <CardContent className="flex-1 pb-0">
-        <ChartContainer
-          config={chartConfig}
-          className="mx-auto aspect-square max-h-[250px]"
-        >
-          <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Pie
-              data={chartData}
-              dataKey="stocks"
-              nameKey="browser"
-              innerRadius={60}
-              strokeWidth={5}
+      <CardContent>
+        {isLoadingStockCountByCategory ? (
+          <Loading label="Loading..." />
+        ) : !stockCountByCategory ? (
+          <NotFound label="Loading..." />
+        ) : (
+          <ChartContainer config={chartConfigChartStockCountByCategory}>
+            <BarChart
+              accessibilityLayer
+              data={stockCountByCategory}
+              layout="vertical"
+              margin={{
+                right: 16,
+              }}
             >
-              <Label
-                content={({ viewBox }) => {
-                  if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
-                    return (
-                      <text
-                        x={viewBox.cx}
-                        y={viewBox.cy}
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                      >
-                        <tspan
-                          x={viewBox.cx}
-                          y={viewBox.cy}
-                          className="fill-foreground text-3xl font-bold"
-                        >
-                          {totalStocks.toLocaleString()}
-                        </tspan>
-                        <tspan
-                          x={viewBox.cx}
-                          y={(viewBox.cy || 0) + 24}
-                          className="fill-muted-foreground"
-                        >
-                          Stocks
-                        </tspan>
-                      </text>
-                    );
-                  }
-                }}
+              <CartesianGrid horizontal={false} />
+              <YAxis
+                dataKey="category"
+                type="category"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                hide
               />
-            </Pie>
-          </PieChart>
-        </ChartContainer>
+              <XAxis dataKey="stock" type="number" hide />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="line" />}
+              />
+              <Bar
+                dataKey="stock"
+                layout="vertical"
+                fill="var(--color-stock)"
+                radius={4}
+              >
+                <LabelList
+                  dataKey="category"
+                  position="insideLeft"
+                  offset={8}
+                  className="fill-[--color-label]"
+                  fontSize={12}
+                />
+                <LabelList
+                  dataKey="stock"
+                  position="right"
+                  offset={8}
+                  className="fill-foreground"
+                  fontSize={12}
+                />
+              </Bar>
+            </BarChart>
+          </ChartContainer>
+        )}
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
-          Amount category : {chartData.length}
-          <Tag className="h-4 w-4" />
-        </div>
-      </CardFooter>
+      <CardFooter className="flex-col items-start gap-2 text-sm"></CardFooter>
     </Card>
   );
 }
