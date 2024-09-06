@@ -1,5 +1,7 @@
+import { ChartStockAmount } from '@/features/dashboard/Chart';
+
 const DashboardPage = () => {
-  return <div>Dashboard Page</div>;
+  return <ChartStockAmount></ChartStockAmount>;
 };
 
 export default DashboardPage;
