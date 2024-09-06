@@ -34,12 +34,16 @@ export const useGetStock = (id: StockDetails['id']) => {
 export const useCreateStock = () => {
   return useMutation({
     mutationFn: async (input: AddStockInput) => {
+      const formData = new FormData();
+      formData.append('name', input.name);
+      formData.append('amount', String(input.amount));
+      formData.append('detail', input.detail);
+      if (input.image) formData.append('image', input.image);
+      formData.append('status', input.status);
+      formData.append('CategoryId', String(input.CategoryId));
       const res = await fetch('/api/stocks', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(input),
+        body: formData,
       });
 
       if (!res.ok) {

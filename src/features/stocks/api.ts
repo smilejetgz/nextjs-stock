@@ -84,9 +84,8 @@ export const update = async (id: number, input: UpdateStockInput) => {
 
 export const add = async (userId: number, input: AddStockInput) => {
   let image = null;
-  if (input.image) {
-    image = await saveFile(input.image);
-  }
+  if (input.image) image = await saveFile(input.image);
+
   const stock = await db.stock.create({
     data: {
       ...input,

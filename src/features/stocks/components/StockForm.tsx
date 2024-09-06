@@ -80,7 +80,7 @@ const StockForm = (props: StockFormProps) => {
             ...props.stock,
             image: undefined,
           }
-        : { name: '', amount: 0, image: undefined },
+        : { name: '', amount: 0, image: null },
   });
 
   return (

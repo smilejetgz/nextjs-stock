@@ -38,13 +38,15 @@ export const columns: ColumnDef<StockItem>[] = [
       />
     ),
     cell: ({ row }) => {
-      const image = String(row.getValue('image'));
+      const image = row.getValue('image');
       return (
         <Image
           alt="Product image"
           className="hidden aspect-square rounded-md object-cover md:table-cell"
           height="64"
-          src={getImagePath(image)}
+          src={
+            !image ? '/assets/images/no-image.png' : getImagePath(String(image))
+          }
           width="64"
         />
       );

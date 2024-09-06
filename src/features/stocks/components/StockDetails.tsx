@@ -40,7 +40,11 @@ const StockDetails = () => {
               alt="Product image"
               className="aspect-square rounded-md object-cover"
               height="124"
-              src={getImagePath(String(stock.image))}
+              src={
+                !stock.image
+                  ? '/assets/images/no-image.png'
+                  : getImagePath(String(stock.image))
+              }
               width="124"
             />
           </div>

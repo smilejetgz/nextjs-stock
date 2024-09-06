@@ -1,7 +1,7 @@
 import { findAll } from '@/features/stocks/api';
 import { getServerAuthSession } from '@/features/auth/auth';
 import { type AddStockInput } from '@/features/stocks/types';
-import * as validators from '@/features/stocks/validators';
+// import * as validators from '@/features/stocks/validators';
 import * as api from '@/features/stocks/api';
 
 export const GET = async () => {
@@ -17,22 +17,19 @@ export const POST = async (req: Request) => {
     });
   }
 
-  const body = await (req.json() as Promise<AddStockInput>);
-
   try {
-    const form = await validators.add.parseAsync(body);
-
-    const isNameTaken = await api.checkStockNameExists({ name: form.name });
-    if (isNameTaken) {
-      return new Response(
-        JSON.stringify({ error: 'Stock name already taken' }),
-        {
-          status: 409,
-        },
-      );
-    }
+    const formData = await req.formData();
+    const form = {
+      name: formData.get('name'),
+      amount: Number(formData.get('amount')),
+      detail: formData.get('detail'),
+      image: formData.get('image'),
+      status: formData.get('status'),
+      CategoryId: Number(formData.get('CategoryId')),
+    } as AddStockInput;
 
     const stock = await api.add(+session.user.id, form);
+    console.log(stock);
 
     return new Response(JSON.stringify(stock), { status: 201 });
   } catch (error) {

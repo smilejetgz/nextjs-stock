@@ -20,18 +20,26 @@ export const PATCH = async (req: Request, { params: { id } }: PathParams) => {
   if (!session)
     return Response.json({ error: 'Please login' }, { status: 401 });
 
-  const formData = await req.formData();
-  const form = {
-    name: formData.get('name'),
-    amount: Number(formData.get('amount')),
-    detail: formData.get('detail'),
-    image: formData.get('image'),
-    status: formData.get('status'),
-    CategoryId: Number(formData.get('CategoryId')),
-  } as UpdateStockInput;
-  const stock = await api.update(+id, form);
+  try {
+    const formData = await req.formData();
+    const form = {
+      name: formData.get('name'),
+      amount: Number(formData.get('amount')),
+      detail: formData.get('detail'),
+      image: formData.get('image'),
+      status: formData.get('status'),
+      CategoryId: Number(formData.get('CategoryId')),
+    } as UpdateStockInput;
+    const stock = await api.update(+id, form);
 
-  return Response.json(stock);
+    return new Response(JSON.stringify(stock), { status: 201 });
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : 'An unexpected error occurred.';
+    return new Response(JSON.stringify({ error: errorMessage }), {
+      status: 422,
+    });
+  }
 };
 
 export const DELETE = async (_req: Request, { params: { id } }: PathParams) => {

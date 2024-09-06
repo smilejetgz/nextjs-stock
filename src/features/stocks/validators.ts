@@ -13,7 +13,9 @@ export const add = z.object({
     required_error: 'Status is required',
   }),
   CategoryId: z.coerce.number(),
-  image,
+  image: image.nullable(),
 });
 
-export const update = add.partial();
+export const update = add.partial().extend({
+  image: image.optional(),
+});
