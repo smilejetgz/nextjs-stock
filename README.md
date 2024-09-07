@@ -1,4 +1,4 @@
-# Stock
+# Tools
 
 | Favicon  | Package | Version  |
 | :------------: | :------------: | :------------: |
@@ -20,24 +20,9 @@
 
 ## ER Diagram
 
-<img src="https://cdn.discordapp.com/attachments/1282103169538850877/1282103512381128826/diagram-export-8-9-2567-05_19_49.png?ex=66de2371&is=66dcd1f1&hm=1d2d811681fdc412fa6d0f2f4b06363dd8d43c9d180ea3b52a268ab9ca9b88c7&" width="700vh" >
+<img src="https://cdn.discordapp.com/attachments/1282103169538850877/1282103512381128826/diagram-export-8-9-2567-05_19_49.png?ex=66de2371&is=66dcd1f1&hm=1d2d811681fdc412fa6d0f2f4b06363dd8d43c9d180ea3b52a268ab9ca9b88c7&">
 
 ```prisma
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
 enum StockStatus {
   APPROVED
   REJECTED
@@ -47,7 +32,8 @@ enum Role {
   MANAGER
   ADMIN
 }
-
+```
+```prisma
 model User {
   id        Int        @id @default(autoincrement())
   name      String     @unique
@@ -60,7 +46,8 @@ model User {
   Category  Category[]
   Stock     Stock[]
 }
-
+```
+```prisma
 model Category {
   id        Int      @id @default(autoincrement())
   name      String   @unique
@@ -70,7 +57,8 @@ model Category {
   user      User     @relation(fields: [userId], references: [id])
   Stock     Stock[]
 }
-
+```
+```prisma
 model Stock {
   id         Int         @id @default(autoincrement())
   name       String      @unique
