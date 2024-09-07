@@ -92,13 +92,13 @@ export const TableNewUsers = () => {
                       <Image
                         alt="Product image"
                         className="hidden aspect-square rounded-full object-cover md:table-cell"
-                        height="32"
+                        height="27"
                         src={
                           !key.image
                             ? '/assets/images/avatar.png'
                             : getImagePath(key.image)
                         }
-                        width="32"
+                        width="27"
                       />
                     </div>
                   </TableCell>

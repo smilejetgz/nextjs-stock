@@ -67,7 +67,7 @@ export const NewUsers = async () => {
       createdAt: true,
     },
     orderBy: { createdAt: 'desc' },
-    take: 7,
+    take: 8,
   });
 
   return newUsers;
