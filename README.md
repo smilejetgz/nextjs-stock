@@ -20,7 +20,7 @@
 
 ## ER Diagram
 
-<img src="https://cdn.discordapp.com/attachments/1282103169538850877/1282103512381128826/diagram-export-8-9-2567-05_19_49.png?ex=66de2371&is=66dcd1f1&hm=1d2d811681fdc412fa6d0f2f4b06363dd8d43c9d180ea3b52a268ab9ca9b88c7&" width="400vh" >
+<img src="https://cdn.discordapp.com/attachments/1282103169538850877/1282103512381128826/diagram-export-8-9-2567-05_19_49.png?ex=66de2371&is=66dcd1f1&hm=1d2d811681fdc412fa6d0f2f4b06363dd8d43c9d180ea3b52a268ab9ca9b88c7&" width="700vh" >
 
 ```prisma
 // This is your Prisma schema file,
