@@ -37,8 +37,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ClientProviders>{children}</ClientProviders>
-          <Toaster />
+          <ClientProviders>
+            {children}
+            <Toaster />
+          </ClientProviders>
         </ThemeProvider>
       </body>
     </html>

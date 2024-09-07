@@ -37,7 +37,7 @@ export const useGetStockCountStatus = () => {
 
 export const useGetUserCount = () => {
   return useQuery({
-    queryKey: ['stockCount'],
+    queryKey: ['userCount'],
     queryFn: async () => {
       const res = await fetch('/api/dashboard/user-count');
       const userCount = await (res.json() as Promise<UserCount>);

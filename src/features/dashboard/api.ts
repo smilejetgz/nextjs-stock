@@ -47,3 +47,33 @@ export const CategoryCount = async () => {
 
   return categoryCount;
 };
+
+export const NewUsers = async () => {
+  const newUsers = await db.user.findMany({
+    select: { name: true, email: true, createdAt: true },
+    orderBy: { createdAt: 'desc' },
+    take: 10,
+  });
+
+  return newUsers;
+};
+
+export const NewCategories = async () => {
+  const newCategories = await db.category.findMany({
+    select: { name: true },
+    orderBy: { createdAt: 'desc' },
+    take: 10,
+  });
+
+  return newCategories;
+};
+
+export const NewStocks = async () => {
+  const newStocks = await db.stock.findMany({
+    select: { image: true, name: true, amount: true },
+    orderBy: { createdAt: 'desc' },
+    take: 10,
+  });
+
+  return newStocks;
+};

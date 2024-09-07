@@ -44,7 +44,7 @@ const chartConfigChartStockCountByCategory = {
   },
 } satisfies ChartConfig;
 
-export function ChartStockCountByCategory() {
+export const ChartStockCountByCategory = () => {
   const {
     data: stockCountByCategory,
     isLoading: isLoadingStockCountByCategory,
@@ -114,7 +114,7 @@ export function ChartStockCountByCategory() {
       <CardFooter className="flex-col items-start gap-2 text-sm"></CardFooter>
     </Card>
   );
-}
+};
 
 // ChartStockCountStatus
 const chartConfigChartStockCountStatus = {
@@ -131,7 +131,7 @@ const chartConfigChartStockCountStatus = {
   },
 } satisfies ChartConfig;
 
-export function ChartStockCountStatus() {
+export const ChartStockCountStatus = () => {
   const { data: stockCountStatus, isLoading: isLoadingStockCountStatus } =
     useGetStockCountStatus();
 
@@ -215,4 +215,4 @@ export function ChartStockCountStatus() {
       </CardContent>
     </Card>
   );
-}
+};
