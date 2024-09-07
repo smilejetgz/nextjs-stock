@@ -37,7 +37,7 @@ const AuthMenu = () => {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href="/auth/profile">Edit Profile</Link>
+            <Link href="/profile">Edit Profile</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
             <span onClick={() => signOut({ redirect: false })}>Sign Out</span>

@@ -20,6 +20,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/features/shadcn/components/ui/form';
 import { Input } from '@/features/shadcn/components/ui/input';
 import { Separator } from '@/features/shadcn/components/ui/separator';
@@ -114,6 +115,7 @@ const CategoryForm = (props: CategoryFormProps) => {
                         {...field}
                       />
                     </FormControl>
+                    <FormMessage></FormMessage>
                   </FormItem>
                 )}
               />
