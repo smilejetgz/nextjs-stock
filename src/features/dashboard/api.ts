@@ -10,10 +10,22 @@ export const StockCountByCategory = async () => {
     },
   });
 
-  return stockCountByCategory
-    .map((category) => ({
-      category: category.name,
-      stock: Number(category._count.Stock),
-    }))
-    .sort((a, b) => b.stock - a.stock);
+  return stockCountByCategory.map((category) => ({
+    category: category.name,
+    stock: Number(category._count.Stock),
+  }));
+};
+
+export const StockCountStatus = async () => {
+  const stockStatusCount = await db.stock.groupBy({
+    by: ['status'],
+    _count: {
+      status: true,
+    },
+  });
+
+  return stockStatusCount.map((stock) => ({
+    key: stock.status,
+    value: Number(stock._count.status),
+  }));
 };

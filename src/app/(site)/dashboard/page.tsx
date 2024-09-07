@@ -1,7 +1,15 @@
-import { ChartStockCountByCategory } from '@/features/dashboard/Chart';
+import {
+  ChartStockCountByCategory,
+  ChartStockCountStatus,
+} from '@/features/dashboard/Chart';
 
 const DashboardPage = () => {
-  return <ChartStockCountByCategory></ChartStockCountByCategory>;
+  return (
+    <>
+      <ChartStockCountByCategory />
+      <ChartStockCountStatus />
+    </>
+  );
 };
 
 export default DashboardPage;

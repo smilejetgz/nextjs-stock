@@ -4,7 +4,11 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Cell,
+  Label,
   LabelList,
+  Pie,
+  PieChart,
   XAxis,
   YAxis,
 } from 'recharts';
@@ -23,8 +27,12 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from '@/features/shadcn/components/ui/chart';
-import { useGetStockCountByCategory } from '@/features/dashboard/hooks/api';
+import {
+  useGetStockCountByCategory,
+  useGetStockCountStatus,
+} from '@/features/dashboard/hooks/api';
 import { Loading, NotFound } from '@/features/ui/components/Status';
+import { useMemo } from 'react';
 
 const chartConfigChartStockCountByCategory = {
   stock: {
@@ -70,6 +78,7 @@ export function ChartStockCountByCategory() {
                 tickLine={false}
                 tickMargin={10}
                 axisLine={false}
+                tickFormatter={(value) => String(value)}
                 hide
               />
               <XAxis dataKey="stock" type="number" hide />
@@ -103,6 +112,105 @@ export function ChartStockCountByCategory() {
         )}
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm"></CardFooter>
+    </Card>
+  );
+}
+
+// ChartStockCountStatus
+const chartConfigChartStockCountStatus = {
+  value: {
+    label: 'value',
+  },
+  APPROVED: {
+    label: 'APPROVED',
+    color: 'hsl(var(--chart-1))',
+  },
+  REJECTED: {
+    label: 'REJECTED',
+    color: 'hsl(var(--chart-5))',
+  },
+} satisfies ChartConfig;
+
+export function ChartStockCountStatus() {
+  const { data: stockCountStatus, isLoading: isLoadingStockCountStatus } =
+    useGetStockCountStatus();
+
+  const totalStatus = useMemo(() => {
+    return stockCountStatus?.reduce((acc, curr) => acc + curr.value, 0) || 0;
+  }, [stockCountStatus]);
+
+  return (
+    <Card className="flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Pie Chart - Donut with Text</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={chartConfigChartStockCountStatus}
+          className="mx-auto aspect-square max-h-[250px]"
+        >
+          {isLoadingStockCountStatus ? (
+            <Loading label="Loading..." />
+          ) : !stockCountStatus ? (
+            <NotFound label="No data found" />
+          ) : (
+            <PieChart>
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Pie
+                data={stockCountStatus}
+                dataKey="value"
+                nameKey="key"
+                innerRadius={60}
+                strokeWidth={5}
+              >
+                {stockCountStatus.map((entry) => (
+                  <Cell
+                    key={`cell-${entry.key}`}
+                    fill={
+                      chartConfigChartStockCountStatus[entry.key]?.color ||
+                      'gray'
+                    }
+                  />
+                ))}
+                <Label
+                  content={({ viewBox }) => {
+                    if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
+                      return (
+                        <text
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          textAnchor="middle"
+                          dominantBaseline="middle"
+                        >
+                          <tspan
+                            x={viewBox.cx}
+                            y={viewBox.cy}
+                            className="fill-foreground text-3xl font-bold"
+                          >
+                            {totalStatus.toLocaleString()}
+                          </tspan>
+                          <tspan
+                            x={viewBox.cx}
+                            y={(viewBox.cy || 0) + 24}
+                            className="fill-muted-foreground"
+                          >
+                            Amount
+                          </tspan>
+                        </text>
+                      );
+                    }
+                    return null;
+                  }}
+                />
+              </Pie>
+            </PieChart>
+          )}
+        </ChartContainer>
+      </CardContent>
     </Card>
   );
 }
