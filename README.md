@@ -1,6 +1,8 @@
 # Stock
 
-<div class="flex p-6" align="center">
+<div class="flex p-4" align="center">
   <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096042229108846/image.png?ex=66de1c7c&is=66dccafc&hm=03d3800ff25281fd9bc277bca644c695a264af8f9a00bc20112a697e28283bcf&" width="300vh" >
   <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096919547482195/image.png?ex=66de1d4d&is=66dccbcd&hm=f147514a660f344288637bedfa373458cd95f36f35478e95627abda35726540a&" width="300vh" >
 </div>
+
+<img alt="" src="https://camo.githubusercontent.com/021072366dc9ad7d571a881352a8a1d502d76f0e85f6f82143e21639cb495285/68747470733a2f2f64656e6f2e62756e646c656a732e636f6d2f3f713d4074616e737461636b2f72656163742d717565727926636f6e6669673d7b25323265736275696c642532323a7b25323265787465726e616c2532323a5b25323272656163742532322c25323272656163742d646f6d2532325d7d7d2662616467653d64657461696c6564" data-canonical-src="https://deno.bundlejs.com/?q=@tanstack/react-query&amp;config={%22esbuild%22:{%22external%22:[%22react%22,%22react-dom%22]}}&amp;badge=detailed" style="max-width: 100%;">
