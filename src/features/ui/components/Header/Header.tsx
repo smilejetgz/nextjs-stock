@@ -1,7 +1,6 @@
 'use client';
 
 import { Button } from '@/features/shadcn/components/ui/button';
-import { Input } from '@/features/shadcn/components/ui/input';
 import {
   Sheet,
   SheetContent,
@@ -10,12 +9,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/features/shadcn/components/ui/sheet';
-import { PanelLeft, Search } from 'lucide-react';
+import { PanelLeft } from 'lucide-react';
 import { Separator } from '@/features/shadcn/components/ui/separator';
 import { ModeToggle } from '@/features/ui/components/Header/ModeToggle';
 import BreadcrumbNavigation from '@/features/ui/components/Header/Breadcrumb';
 import NavLinks from '@/features/ui/components/NavLinks';
 import AuthMenu from '@/features/auth/components/AuthMenu';
+import SearchInput from '@/features/ui/components/Header/Search';
 
 const Header = () => {
   return (
@@ -42,14 +42,7 @@ const Header = () => {
         </SheetContent>
       </Sheet>
       <BreadcrumbNavigation />
-      <div className="relative ml-auto flex-1 md:grow-0">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-          type="search"
-          placeholder="Search product [ID]"
-          className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
-        />
-      </div>
+      <SearchInput />
       <ModeToggle />
       <AuthMenu />
     </header>
