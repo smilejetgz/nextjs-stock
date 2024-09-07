@@ -1,13 +1,8 @@
 'use client';
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/features/shadcn/components/ui/tooltip';
+import { TooltipProvider } from '@/features/shadcn/components/ui/tooltip';
 import NavLinks from '@/features/ui/components/NavLinks';
-import { Package2, Settings } from 'lucide-react';
+import { Package2 } from 'lucide-react';
 import Link from 'next/link';
 
 const Sidebar = () => {
@@ -25,7 +20,7 @@ const Sidebar = () => {
           <NavLinks dialog={false} />
         </TooltipProvider>
       </nav>
-      <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
+      {/* <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -40,7 +35,7 @@ const Sidebar = () => {
             <TooltipContent side="right">Settings</TooltipContent>
           </Tooltip>
         </TooltipProvider>
-      </nav>
+      </nav> */}
     </aside>
   );
 };
