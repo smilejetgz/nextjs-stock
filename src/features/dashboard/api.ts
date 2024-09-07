@@ -48,31 +48,36 @@ export const CategoryCount = async () => {
   return categoryCount;
 };
 
-export const NewUsers = async () => {
-  const newUsers = await db.user.findMany({
-    select: { name: true, email: true, createdAt: true },
-    orderBy: { createdAt: 'desc' },
-    take: 10,
-  });
-
-  return newUsers;
-};
-
 export const NewCategories = async () => {
   const newCategories = await db.category.findMany({
-    select: { name: true },
+    select: { name: true, createdAt: true },
     orderBy: { createdAt: 'desc' },
-    take: 10,
+    take: 5,
   });
 
   return newCategories;
 };
 
+export const NewUsers = async () => {
+  const newUsers = await db.user.findMany({
+    select: {
+      name: true,
+      image: true,
+      role: true,
+      createdAt: true,
+    },
+    orderBy: { createdAt: 'desc' },
+    take: 7,
+  });
+
+  return newUsers;
+};
+
 export const NewStocks = async () => {
   const newStocks = await db.stock.findMany({
-    select: { image: true, name: true, amount: true },
+    select: { name: true, image: true, amount: true, createdAt: true },
     orderBy: { createdAt: 'desc' },
-    take: 10,
+    take: 5,
   });
 
   return newStocks;

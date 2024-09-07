@@ -13,7 +13,7 @@ import {
   CardContent,
 } from '@/features/shadcn/components/ui/card';
 import { Loading, NotFound } from '@/features/ui/components/Status';
-import { Package, Tag, Users } from 'lucide-react';
+import { EyeOff, Package, Tag, Users } from 'lucide-react';
 
 export const CardUserCount = () => {
   const { data: userCount, isLoading: isLoadingUserCount } = useGetUserCount();
@@ -100,7 +100,7 @@ export const CardStockCountStatus = () => {
     <Card x-chunk="dashboard-01-chunk-1">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium">Stock</CardTitle>
-        <Package className="h-4 w-4 text-muted-foreground" />
+        <EyeOff className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">

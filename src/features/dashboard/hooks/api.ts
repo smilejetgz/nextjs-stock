@@ -6,6 +6,7 @@ import {
   type StockCount,
   type NewStocks,
   type NewCategories,
+  type NewUsers,
 } from '@/features/dashboard/type';
 import { useQuery } from '@tanstack/react-query';
 
@@ -78,7 +79,7 @@ export const useGetNewUsers = () => {
     queryKey: ['newUsers'],
     queryFn: async () => {
       const res = await fetch('/api/dashboard/new-users');
-      const newUsers = await (res.json() as Promise<NewStocks>);
+      const newUsers = await (res.json() as Promise<NewUsers>);
 
       return newUsers;
     },

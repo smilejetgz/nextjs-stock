@@ -142,10 +142,8 @@ export const ChartStockCountStatus = () => {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Stock status</CardTitle>
-        <CardDescription>
-          stock count status (Approved/Rejected)
-        </CardDescription>
+        <CardTitle>Status</CardTitle>
+        <CardDescription>Stock [ Approved/Rejected ]</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
