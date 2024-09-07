@@ -29,3 +29,21 @@ export const StockCountStatus = async () => {
     value: Number(stock._count.status),
   }));
 };
+
+export const UserCount = async () => {
+  const userCount = await db.user.count();
+  console.log(userCount);
+  return userCount;
+};
+
+export const StockCount = async () => {
+  const stockCount = await db.stock.count();
+
+  return stockCount;
+};
+
+export const CategoryCount = async () => {
+  const categoryCount = await db.category.count();
+
+  return categoryCount;
+};

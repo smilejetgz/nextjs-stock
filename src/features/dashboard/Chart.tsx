@@ -54,7 +54,7 @@ export function ChartStockCountByCategory() {
     <Card>
       <CardHeader>
         <CardTitle>Stock</CardTitle>
-        <CardDescription>Stock count by category</CardDescription>
+        <CardDescription>Amount stock by category</CardDescription>
       </CardHeader>
       <CardContent>
         {isLoadingStockCountByCategory ? (
@@ -142,8 +142,10 @@ export function ChartStockCountStatus() {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Stock status</CardTitle>
+        <CardDescription>
+          stock count status (Approved/Rejected)
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
