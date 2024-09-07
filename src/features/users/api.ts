@@ -3,6 +3,25 @@ import bcrypt from 'bcryptjs';
 import db from '@/features/shared/db';
 import { removeDirFromFile, saveFile } from '@/features/shared/helpers/file';
 
+export const findAll = async () => {
+  const user = await db.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      image: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
+  return user;
+};
+
 export const findById = async (id: number) => {
   const user = await db.user.findUnique({
     where: { id },
