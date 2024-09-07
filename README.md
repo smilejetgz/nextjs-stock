@@ -77,9 +77,42 @@ model Stock {
 ```
 
 ## Example
-|  Dark Mode | Light Mode |
+
+|  Login | Register |
 | :------------: | :------------: |
-|  <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096042229108846/image.png?ex=66de1c7c&is=66dccafc&hm=03d3800ff25281fd9bc277bca644c695a264af8f9a00bc20112a697e28283bcf&" width="400vh" > | <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096919547482195/image.png?ex=66de1d4d&is=66dccbcd&hm=f147514a660f344288637bedfa373458cd95f36f35478e95627abda35726540a&" width="400vh" >  |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096759719329873/image.png?ex=66de1d27&is=66dccba7&hm=c4adf082efcd5fd8e9935a724d1d87326851f213f00c7223a1385074866f35ce&=&format=webp&quality=lossless&width=1415&height=671"> | <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096820327026709/image.png?ex=66de1d36&is=66dccbb6&hm=395716e1bd046449abbd1c8eceb952edca03f44744a9d5932d3e4323740377c5&=&format=webp&quality=lossless&width=1415&height=671">  |
+
+|  Dashboard Dark Mode | Dashboard Light Mode |
+| :------------: | :------------: |
+|  <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096042229108846/image.png?ex=66de1c7c&is=66dccafc&hm=03d3800ff25281fd9bc277bca644c695a264af8f9a00bc20112a697e28283bcf&"> | <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096919547482195/image.png?ex=66de1d4d&is=66dccbcd&hm=f147514a660f344288637bedfa373458cd95f36f35478e95627abda35726540a&">  |
+
+|  Categories |
+| :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096180741804145/image.png?ex=66de1c9d&is=66dccb1d&hm=479e23b253a97ea4e43c794da06ce264b2952b98af0979e045d35c76754c4e57&=&format=webp&quality=lossless&width=1197&height=671">
+
+|  Stock |
+| :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096260907536487/image.png?ex=66de1cb0&is=66dccb30&hm=9d5f512d10df2bb673f7e8e8d904ba30cb5fc7621724489e8ac3b70011c25ed8&=&format=webp&quality=lossless&width=923&height=671"> |
+
+|  User |
+| :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096333448024146/image.png?ex=66de1cc2&is=66dccb42&hm=3566f67f6c0134ceef3fb9176f037cf803435028a356f8e827c41dd17dca5f8c&=&format=webp&quality=lossless&width=924&height=671"> |
+
+|  Modal Detail [Intercept route] | Modal Edit [Intercept route] |
+| :------------: | :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096458484678666/image.png?ex=66de1cdf&is=66dccb5f&hm=eeb768fc7907cd794c5ce97192bb608df9cff8ea18cfbfd8d115c0d4afd5a62c&=&format=webp&quality=lossless&width=923&height=671"> |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096558338216067/image.png?ex=66de1cf7&is=66dccb77&hm=1d644d86367025e8d0f45a7a8243ae22d6b4291e0bd05d0724ceadbf4e2eb72e&=&format=webp&quality=lossless&width=923&height=671"> |
+
+|  Modal Edit [Intercept route] |
+| :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096558338216067/image.png?ex=66de1cf7&is=66dccb77&hm=1d644d86367025e8d0f45a7a8243ae22d6b4291e0bd05d0724ceadbf4e2eb72e&=&format=webp&quality=lossless&width=923&height=671"> |
+
+|  Modal Delete [Intercept route] |
+| :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096624096510012/image.png?ex=66de1d07&is=66dccb87&hm=0a1cd843a7774390e871f02d2aa0143c5c442e15dadf66b8016feed6673baeb5&=&format=webp&quality=lossless&width=923&height=671"> |
+
+|  Profile |
+| :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096701938864280/image.png?ex=66de1d19&is=66dccb99&hm=a753eb35bae7f8f9f5ee8505dec907dca76c2b21c9ff22b479a8c5a599b73966&=&format=webp&quality=lossless&width=1415&height=671"> |
 
 
 
