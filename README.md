@@ -1,6 +1,6 @@
 # Stock
 
-###Dependencies
+##Dependencies
 | Favicon | Package | Version |
 | :------------: | :------------: | :------------: |
 | <img src="https://nextjs.org/favicon.ico" width="24vh" > | NextJS | 14.2.6 |
@@ -19,10 +19,10 @@
 | <img src="https://www.docker.com/wp-content/uploads/2024/02/cropped-docker-logo-favicon-32x32.png" width="24vh" > | Docker | 4.33.1 |
 | <img src="https://www.postman.com/_ar-assets/images/favicon-1-32.png" width="24vh" > | Postman | 11.11.1 |
 
-###ER Diagram
+##ER Diagram
 <img src="https://cdn.discordapp.com/attachments/1282103169538850877/1282103512381128826/diagram-export-8-9-2567-05_19_49.png?ex=66de2371&is=66dcd1f1&hm=1d2d811681fdc412fa6d0f2f4b06363dd8d43c9d180ea3b52a268ab9ca9b88c7&" width="400vh" >
 
-###Example Mode
+##Example Mode
 | Dark Mode | Light Mode |
 | :------------: | :------------: |
 | <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096042229108846/image.png?ex=66de1c7c&is=66dccafc&hm=03d3800ff25281fd9bc277bca644c695a264af8f9a00bc20112a697e28283bcf&" width="300vh" > | <img src="https://cdn.discordapp.com/attachments/1282095960796692561/1282096919547482195/image.png?ex=66de1d4d&is=66dccbcd&hm=f147514a660f344288637bedfa373458cd95f36f35478e95627abda35726540a&" width="300vh" > |
