@@ -93,9 +93,9 @@ model Stock {
 | :------------: |
 |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096180741804145/image.png?ex=66de1c9d&is=66dccb1d&hm=479e23b253a97ea4e43c794da06ce264b2952b98af0979e045d35c76754c4e57&=&format=webp&quality=lossless&width=1197&height=671">
 
-|  Stock |
-| :------------: |
-|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096260907536487/image.png?ex=66de1cb0&is=66dccb30&hm=9d5f512d10df2bb673f7e8e8d904ba30cb5fc7621724489e8ac3b70011c25ed8&=&format=webp&quality=lossless&width=923&height=671"> |
+|  Stock | User |
+| :------------: | :------------: |
+|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096260907536487/image.png?ex=66de1cb0&is=66dccb30&hm=9d5f512d10df2bb673f7e8e8d904ba30cb5fc7621724489e8ac3b70011c25ed8&=&format=webp&quality=lossless&width=923&height=671"> |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096333448024146/image.png?ex=66de1cc2&is=66dccb42&hm=3566f67f6c0134ceef3fb9176f037cf803435028a356f8e827c41dd17dca5f8c&=&format=webp&quality=lossless&width=924&height=671"> |
 
 |  User |
 | :------------: |
