@@ -97,10 +97,6 @@ model Stock {
 | :------------: | :------------: |
 |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096260907536487/image.png?ex=66de1cb0&is=66dccb30&hm=9d5f512d10df2bb673f7e8e8d904ba30cb5fc7621724489e8ac3b70011c25ed8&=&format=webp&quality=lossless&width=923&height=671"> |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096333448024146/image.png?ex=66de1cc2&is=66dccb42&hm=3566f67f6c0134ceef3fb9176f037cf803435028a356f8e827c41dd17dca5f8c&=&format=webp&quality=lossless&width=924&height=671"> |
 
-|  User |
-| :------------: |
-|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096333448024146/image.png?ex=66de1cc2&is=66dccb42&hm=3566f67f6c0134ceef3fb9176f037cf803435028a356f8e827c41dd17dca5f8c&=&format=webp&quality=lossless&width=924&height=671"> |
-
 |  Modal Detail [Intercept route] | Modal Edit [Intercept route] |
 | :------------: | :------------: |
 |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096458484678666/image.png?ex=66de1cdf&is=66dccb5f&hm=eeb768fc7907cd794c5ce97192bb608df9cff8ea18cfbfd8d115c0d4afd5a62c&=&format=webp&quality=lossless&width=923&height=671"> |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096558338216067/image.png?ex=66de1cf7&is=66dccb77&hm=1d644d86367025e8d0f45a7a8243ae22d6b4291e0bd05d0724ceadbf4e2eb72e&=&format=webp&quality=lossless&width=923&height=671"> |
