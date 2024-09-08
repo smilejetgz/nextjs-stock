@@ -105,14 +105,6 @@ model Stock {
 | :------------: | :------------: |
 |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096458484678666/image.png?ex=66de1cdf&is=66dccb5f&hm=eeb768fc7907cd794c5ce97192bb608df9cff8ea18cfbfd8d115c0d4afd5a62c&=&format=webp&quality=lossless&width=923&height=671"> |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096558338216067/image.png?ex=66de1cf7&is=66dccb77&hm=1d644d86367025e8d0f45a7a8243ae22d6b4291e0bd05d0724ceadbf4e2eb72e&=&format=webp&quality=lossless&width=923&height=671"> |
 
-|  Modal Edit [Intercept route] |
-| :------------: |
-|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096558338216067/image.png?ex=66de1cf7&is=66dccb77&hm=1d644d86367025e8d0f45a7a8243ae22d6b4291e0bd05d0724ceadbf4e2eb72e&=&format=webp&quality=lossless&width=923&height=671"> |
-
-|  Modal Delete [Intercept route] |
-| :------------: |
-|  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096624096510012/image.png?ex=66de1d07&is=66dccb87&hm=0a1cd843a7774390e871f02d2aa0143c5c442e15dadf66b8016feed6673baeb5&=&format=webp&quality=lossless&width=923&height=671"> |
-
 |  Profile |
 | :------------: |
 |  <img src="https://media.discordapp.net/attachments/1282095960796692561/1282096701938864280/image.png?ex=66de1d19&is=66dccb99&hm=a753eb35bae7f8f9f5ee8505dec907dca76c2b21c9ff22b479a8c5a599b73966&=&format=webp&quality=lossless&width=1415&height=671"> |
