@@ -3,6 +3,15 @@ const nextConfig = {
   eslint: {
     dirs: ['.'],
   },
+  redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useToast } from '@/features/shadcn/hooks/use-toast';
+import { Loading } from '@/features/ui/components/Status';
 import { type Role } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -34,7 +35,12 @@ const ProtectedRoute = ({ roles, children }: ProtectedRouteProps) => {
     router.replace('/forbidden');
   }, [roles, router, session, session?.user.role, toast, status]);
 
-  if (status === 'loading') return <div>Loading....</div>;
+  if (status === 'loading')
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <Loading label="loading..." />
+      </div>
+    );
   if (isAllowed) return <>{children}</>;
   return null;
 };
