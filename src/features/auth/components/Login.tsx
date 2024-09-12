@@ -17,7 +17,7 @@ const Login = () => {
 
     if (result?.ok) {
       toast({ description: 'Welcome back!' });
-      router.replace('/dashboard');
+      router.replace('/');
     }
     if (result?.error) {
       toast({ description: 'Invalid Credentials' });

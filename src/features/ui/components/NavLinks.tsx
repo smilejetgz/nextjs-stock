@@ -9,12 +9,7 @@ interface NavLinksProps {
 
 const NavLinks = ({ dialog }: NavLinksProps) => (
   <>
-    <SidebarLink
-      href="/dashboard"
-      title="Dashboard"
-      Icon={Home}
-      dialog={dialog}
-    />
+    <SidebarLink href="/" title="Dashboard" Icon={Home} dialog={dialog} />
     <SidebarLink
       href="/categories"
       title="Categories"
