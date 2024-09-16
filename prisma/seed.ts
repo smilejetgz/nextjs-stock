@@ -28,7 +28,7 @@ async function main() {
       email: faker.internet.email(),
       password: await bcrypt.hash(faker.internet.password(), 12),
       role: faker.helpers.arrayElement(['ADMIN', 'MANAGER']),
-      image: faker.image.avatarLegacy(),
+      image: faker.image.avatar(),
     };
 
     const user = await prisma.user.upsert({
