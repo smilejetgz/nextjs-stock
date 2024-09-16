@@ -51,6 +51,7 @@ const config = {
       },
     },
   ],
+  ignorePatterns: ['src/features/shadcn/**'],
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
